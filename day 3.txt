@@ -1,0 +1,89 @@
+
+	Java Collection Framework
+	-------------------------
+
+	Array is a data container, which should be the first choice as data container.
+
+	Problems:
+	1) Size is fixed, it cant grow or shrink.
+
+		Person[] persons = new Person[100];
+
+	2) Adding/Removing from arbitrary position is difficult
+
+	3) Memory should b contiguous
+
+
+	Java Collection Framework contains various data containers/structure
+
+	JCF is divided into:
+	1) interfaces
+	2) Implementation classes
+	3) Algorithm classes
+
+
+	List  							Set
+
+a) Supports duplicate data 			unique collection
+b) Supports index-based 			doesn't support
+    operation
+
+c) ordered							not
+
+
+
+Comparable and Comparator
+
+	"Chandler" , "Angelina", "Brad","Ross", "Lee"
+
+
+	"Angelina", Brad, Chandler, Lee and Ross
+
+	Why not
+
+	Lee, Brad, Ross, Chandler, Angelina
+
+
+	List list = new ArrayList();
+
+	list.add("Brad");
+
+	list.add("Ross");
+
+	list.add(22);
+
+
+
+	List<String> list = new ArrayList<String>();
+
+
+	HashCode:
+
+	1) Two similar objects should have same hash code
+	2) two dissimlar objects can also have same hash code
+
+
+
+	public class REctangle {
+
+		public int hashCode() {
+			return w * b;
+		}
+	}
+
+	REctangle (4,5)
+	REctangle (5,4)
+
+	REctangle (20,1)
+
+	REctangle (10,2)
+-----------------------------
+
+	Map is a key/value pair
+
+	Dictionary., DNS Registry, Windows Registery
+
+
+	
+
+

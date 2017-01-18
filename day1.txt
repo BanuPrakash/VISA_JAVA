@@ -1,0 +1,254 @@
+
+ Java 8
+ Banu Prakash C
+ banuprakashc@yahoo.co.in
+ ------------------------
+ Softwares Required:
+
+ 1) JDK 1.8
+ 2) Eclipse for JEE 
+ 3) MySQL database / HSQL DB [ Required for next week ]
+
+ --------------------------------------------------------
+	
+	OOP
+	Object Oriented Paradigm
+
+	SOLID Design Principle
+
+	S -- > Single REsponsibility
+	O -- > Open Close Principle
+	L -- > Liskov Substitution Principle
+	I -- > Interface Seggregation
+	D -- > Dependency Injection 
+
+	---------------------------
+
+	What is Java?
+
+	Java Platform provided Environment to execute bytecodes [ compiled code] and provides 
+	APIs.
+
+
+	Compiled code is a bytecode
+
+	source.java ----> javac  ----> source.class
+
+	source.groovy ---> groovyc ---> source.class
+
+
+
+	 Example.java
+
+	 public class Example {
+	 	public static void main(String[] args) {
+	 		test();
+	 	}
+
+	 	public static test() {
+	 		System.out.printn("Hello World!!!!");
+	 	}
+	 }
+
+
+	 Classloader searches in current director and path mentioned by "CLASSPATH" env variable
+
+---------------------------------------------------------------------------------------------
+
+
+
+
+
+
+	Account.java
+
+	public class Account {
+		private double balance;
+
+		public void deposit(double amt) { // public void deposit(Account this, double amt) {
+			balance += amt;	 					// this.balance += amt;
+		}
+
+		public double getBalance() { //public double getBalance(Account this) {
+			return balance;				//return this.balance;
+		}
+	}
+
+
+	AccountExample.java
+
+	public class AccountExample {
+		public static void main(String[] args) {
+			Account first = new Account();
+			Account second = new Account();
+
+			first.balance = 5555.55; // error
+			first.deposit(5555.55); // valid ===> deposit(first, 5555.55);
+
+			System.out.println(first.getBalance()); // getBalance(first);
+		}
+	}
+	
+
+	------------------------------
+
+	Constructors [ special methods ]
+
+		are invoked as soon as the object is created 
+
+		They have same name as that of class
+
+
+
+
+ public class TimeExample {
+ 	public static void main(String[] args) {
+ 		Time t1 = new Time(4,30);
+ 		Time t2 = new Time(3,40);
+
+ 		System.out.println(t1.getHours() + " : " + t1.getMin());
+
+	
+		System.out.println(t2.getHours() + " : " + t2.getMin()); 
+		
+		//second part
+
+		Time t = Time.add(t1, t2);
+
+		System.out.println(t.getHours() + " : " + t.getMin());	// 8 : 1	
+ 	}
+ }
+
+ ----------------------------------------------------	
+
+  Object identity
+
+  equals() Vs == operator
+
+ Time t1 = new Time(4,30);
+ Time t2 = new Time(4,30);
+
+ if(t1 == t2) { // false
+
+ }
+
+
+ Time t3 = t1;
+
+  if(t1 == t3) { // true
+
+ }
+
+  if(t1.equals(t2)) { // should return true
+
+ }
+
+ ----------------------------------------------------------------
+
+ Logical grouping of classes:
+
+ 1) entity / model / domain classes
+ 		class to represent business data
+
+ 2) DAO classes [ Data Access Object]
+ 	They contain CRUD operations on entity
+ 	CREATE READ UPDATE and DELETE
+
+ 3) Utility classes
+ 	helpers
+
+ 4) Exception classes 
+ 	 to represent abnormal condition that arises during program execution
+
+ 5) Business classes
+ 	 contains business logic
+
+ 6) Service classes
+ 		acts as a facade over business and DAO
+
+ 7) UI
+ 	User interface
+ 		could be andriod, ios, Web, Standalone
+-------------------------------------------------------------------
+
+
+	Relationship between classes
+
+	1) Generalization and Speicalization
+
+	2) Assocaition
+
+	3) Realization
+
+	4) Uses A Relationship
+-------------------------------------
+
+	comments
+
+	1) Single line comment
+
+	 // this is a comment
+
+	2) Multiline comment
+
+	/*
+		this
+			is a comment
+
+	*/
+
+
+	3) JavaDoc comment
+
+		/**
+			javadoc comment
+		*/
+
+
+ ---------------------
+
+  class A {
+  	A() {
+  		System.out.prinln("A 1");
+  	}
+  	A(int x) {
+  		System.out.prinln("A 2");
+  	}
+  }
+
+  class B extends A {
+  	B() {
+  		System.out.prinln("B 1");
+  	}
+  	B(int x, int y) {
+  		System.out.prinln("B 2");
+  	}
+  }
+
+  B obj = new B(2,4); // A 1 and B 2
+
+  ----------------
+
+   class A {
+  	A() {
+  		super();
+  		System.out.prinln("A 1");
+  	}
+  	A(int x) {
+  		super();
+  		System.out.prinln("A 2");
+  	}
+  }
+
+  class B extends A {
+  	B() {
+  		super();
+  		System.out.prinln("B 1");
+  	}
+  	B(int x, int y) {
+  	    super(x);
+  		System.out.prinln("B 2");
+  	}
+  }
+
+  B obj = new B(2,4); // A 2 and B 2

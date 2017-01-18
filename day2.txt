@@ -1,0 +1,426 @@
+Unit Testing
+ JUnit is a unit testing framework used for testing java functions
+
+ TCER Excel sheet
+
+
+1) Generalization and Specialization relationship
+
+	class A {
+		public void test() {
+			System.out.println("A");
+		}
+	}
+
+	class B extends A {
+		public void rest() {
+			System.out.println("B");
+		}
+		public void test() {
+			System.out.println("AB");
+		}
+	}
+
+
+	A ob = new B(); //upcasting
+	ob.test(); // AB
+	ob.rest(); // error
+
+	B ob = new A(); // error
+
+
+
+2) Realization relationship
+	
+		A component/object will realize the behiour specified by other in order
+		to communicate
+
+
+		Realization relationship is acheived using interface.
+
+		Why Program to interface?
+
+		a) DESIGN
+		b) DEVELOPMENT
+		c) TESTING
+		d) INTEGRATION
+
+		interface interfaceName {
+			behavior();
+		}
+
+		Example:
+
+		interface EmployeeDao {
+			void addEmployee(Employee emp);
+			void deleteEmployee(int id);
+			Employee getEmployee(int id);
+		}
+
+
+
+ 
+ Factory Design Pattern
+
+
+ 	class Test {
+ 		public static void main(String[] args) {
+ 			Product p;
+ 			Mobile m;
+ 		}
+ 	}
+------------------------------------------------------------------
+
+	Generics
+
+	public class Rectangle {
+		private int width;
+		private int breadth;
+		// code
+	}
+
+	Rectangle r1 = new Rectangle(4,5);
+
+
+	public class DRectangle {
+		private double width;
+		private double breadth;
+		// code
+	}
+
+	DRectangle r2 = new DRectangle(1.4,3.5);
+
+	public class Rectangle <T> {
+		private T width;
+		private T breadth;
+		// code
+	}
+
+	Rectangle<Integer> r1 = new Rectangle<Integer>(4,5);
+	Rectangle<Double> r2 = new Rectangle<Dobule>(1.4,4.5);
+
+	Rectangle<String> r3 = new Rectangle<String>("A","B"); 
+
+	--------
+
+
+	public class Rectangle <T extends Number> {
+		private T width;
+		private T breadth;
+		// code
+	}
+  ----------------
+
+  interface IComparable {
+  	int difference(Object obj);
+  }
+
+  class Book implements IComparable {
+
+  		public int difference(Object obj) {
+  			Book other = (Book) obj;
+  		}
+  }
+ -------------
+
+  interface IComparable <T> {
+  	int difference(T obj);
+  }
+
+  class Book implements IComparable<Book> {
+
+  		public int difference(Book obj) {
+  		 
+  		}
+  }
+
+ ------------------------
+
+
+   1, 4546, 77,2 3
+
+   "Raj", "Smith","Anil", "David"
+
+ ----------------------------------------------------------------------------
+
+ 	interface Fight {							Fight f = new Fight(); // error
+ 		fight(); 								Fight f = new Hero();
+ 	}											f.fight();
+ 												f.swim(); // error
+ 	inteface Dance {							Swim s = (Swim) f;
+ 		dance();								s.swim();
+ 	}
+
+ 	interface Swim {
+ 		swim();
+ 	}
+
+ 	public class Actor implements Dance {
+ 		dance() {
+
+ 		}
+ 	}
+
+ 	public class Hero extends Actor implements Fight, Swim {
+ 		fight() { }
+ 		swim() {  }
+ 	}
+
+----------------------------------------------------------------------
+
+	Exception Handling
+	------------------
+
+	An abnormal condition that arises during program execution is an exception
+
+	In Java Exception is an object which gives the following info:
+
+	a) What went wrong?
+	b) Why did it go wrong?
+	c) Where?
+
+	Exceptions are classified as Error and Exception
+
+
+	Exception type of Exceptions can be classfied into
+	a) Checked type of exception
+	b) Unchecked type of exception
+
+
+	Unchecked 											Checked
+
+	1) Compiler does not enforce u to handle    		compiler enforces
+
+	2) Happens du to reasons within JRE  				conditions are because of outside of JRE
+
+	  Example : /0 , NullPointer, ArrayIndex.. 			SQLException, IOException, 																		ClassNotFoundException
+
+
+	  for checked type of exception use the following syntax:
+
+	  try {
+
+	  		// actual code
+	  } catch(ExceptionType1 ex) {
+
+	  }
+	   catch(ExceptionType2 ex) {
+	  	
+	  } finally {
+	  	compulsory execute code
+	  }
+
+
+	
+	   try {
+
+	  		read from file
+	  		write to database
+	  } catch(IOException ex) {
+
+	  }
+	   catch(SQLException ex) {
+	  	
+	  } finally {
+	  	 release file
+	  	 release db connection
+	  }
+-----------------------------------------------------------------------------------
+
+ Annotation
+  	is a metadata
+
+ Annotations can be used by:
+ 1) Compiler
+ 2) ClassLoader
+ 3) JRE
+
+ Annotation example of Compiler using it:
+
+ public class A {
+ 	public void doTask() {
+
+ 	}
+ }
+
+ public class B extends A {
+ 		@Override
+ 		public void doTesk() {
+
+ 		}
+ }
+
+ Annotation example of ClassLoader using it:
+
+ @Mobile(os="andriod")
+ public class PokemonGo extends Game {
+
+ }
+
+ Annotation example of JRE using it:
+
+
+ public class BankingService {
+
+ 		@Request("/transferFunds")
+ 		public void transferFunds() {
+ 			// code
+ 		}
+
+ 		@Request("/create")
+ 		public void createAccount() {
+ 			// code
+ 		}
+ }
+
+ http://icici.com/transferFunds
+
+ http://icici.com/create
+
+ Annotation example
+
+ public @interface Request {
+ 	String value() default "/";
+ }
+
+ usage
+
+	 @Request(value="/transferFunds")
+ 		public void transferFunds() {
+ 			// code
+ 		}
+
+ 		x = Request.value;
+
+ ------------------------------
+
+
+  @Table(name="BOOKS")
+  public class Book {
+
+  		@Column(name="BOOK_ID", type="Number")
+  		int id;
+
+  		@Column(name="TITLE", type="VARCHAR(255)")
+  		String name;
+  }
+
+
+  Book b = new Book(1,"A");
+
+  save(b);
+
+  INSERT INTO BOOKS (BOOK_ID, TITLE) values ( 1, "A");
+
+
+
+
+  String is immutable
+
+  StringBuilder is mutable
+
+  String s = "Hello";
+
+  s += "World";
+
+ ------------------------------------------------------------------
+
+
+ Anonymous class
+ ---------------
+
+ interface Flyable {
+ 	void fly();
+ }
+
+ class Bird implements Flyable {
+ 	public void fly() {
+ 		// mechanism
+ 	}
+ }
+
+
+ Flyable f = new Bird();
+
+ Flyable f = new Flyable(); // error
+
+  Flyable f = new Flyable() {
+  		public void fly() {
+  			jump from 4th floor
+  		}
+  }
+ -----------------------
+
+ inner class
+
+  Outer.java
+
+  public class Outer {
+  		int x = 10;
+
+  		public class Inner {
+  			public void doTask() {
+  				System.out.prinln("....")
+  			}
+  		}
+  }
+----------------------------------------------------------
+	The final keyword
+
+	1) can be used to create a constant
+
+	public static final double PI = 3.14159; // constant
+
+
+	2) can be used to prevent inheritance
+
+
+	public final class Base {
+
+	}
+
+	public class Derv extends Base { // error
+
+	}
+
+
+	3) To prevent overriding
+
+	public  class Base {
+ 		public final void doTask() {
+
+ 		}
+	}
+
+	public class Derv extends Base {  
+		public void doTask() { //error
+ 		
+ 		}
+	}
+
+
+	4) To create constant pointer
+
+
+	 Book b1 = new Book();
+
+	 Book b2 = new Book();
+
+	 final Book ref = b1; 
+
+	 ref = b2; // error
+
+	 ---------
+
+	 final int[] data = {56,3,66};
+
+	 data[0] = 4444; // valid
+
+	 data = new int[3]; // error
+
+
+
+
+
+
+
