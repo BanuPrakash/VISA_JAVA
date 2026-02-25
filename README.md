@@ -48,3 +48,104 @@ bash terminal> mysql -u "root" -p
 mysql> exit
 
 ```
+OOP: Object Oriented Paradigm
+* Real world
+Object - state and behaviour/actions
+
+Template - class , function , type
+
+SOLID design principles:
+SRP --> Single Reposibility
+
+OCP -> Open for extension and Closed for Change.
+
+L -> Liskov Substitution Principle
+
+I -> Interface seggregation
+
+D -> Dependency Injection (Inversion Of Control)
+
+=======================
+
+What is Java?
+Technology
+Platform - for executing bytecode [portable]
+
+Java Language -- javac - bytecode
+Kotlin -- Kotlin Compiler -- bytecode
+Groovy --> Groovy Compiler -- bytecode
+
+Account.java
+javac Account.java ===> Account.class
+```
+    public class Account {
+        private double balance; // state, instance variables
+
+        // instance methods, actions, behaviours
+        public void deposit(double amt) {
+            balance += amt;
+        }
+
+        public void withdraw(double amt) {
+            this.balance -= amt;
+        }
+
+        public double getBalance() {
+            return this.balance;
+        }
+    }
+
+```
+
+AccountExample.java
+javac AccountExample -> AccountExample.class
+```
+    public class AccountExample {
+        public static void main(String[] args) {
+            Account swethaAcc = new Account(); // instances, Objects
+            Account riaAcc = new Account();
+            
+            swethaAcc.deposit(5000);
+
+            System.out.println(swethaAcc.getBalance());
+        }
+    }
+
+```
+
+Java RuntimeEnvironment [ target ]
+
+java AccountExample 
+
+ClassLoader: 
+    Loads the .class file from Secondary to Primary Storage
+    folder where you are executing, CLASSPATH env variable
+    1) findLoadedClass()
+    2) loadClass()
+    3) defineClass()
+
+    2a) findSystemClass() --> defineClass()
+    
+
+METASPACE
+
+===========================
+
+* instance variables / state ==> HEAP area
+* instance methods ==> any methods executed on Stack
+* local variables ==> stack
+
+Any variables if memory is allocated on METASPACE / HEAP area will have default values
+Variables on Stack won't have default values, you need to initialize before using.
+
+==============================
+
+
+
+
+
+
+
+
+
+
