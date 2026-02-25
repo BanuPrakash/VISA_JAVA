@@ -140,10 +140,143 @@ Variables on Stack won't have default values, you need to initialize before usin
 
 ==============================
 
+Libraries --> jar [ Java Archive ], war --> Web Archive, EAR --> Enterprise archive
+
+Logically grouping of classes / objects
+1) Entity / Model / Domain classes
+    -> Generally assocaited with a persistent store [ like database , files]
+    -> state
+    -> getters and setters
+    -> constructor
+    -> equals() and hashCode()
+2) DAO Data Access Objects
+    CODE to interact with persistent layer
+3) Business Layer
+4) Utility: Helpers
+5) Exception classes
+6) Service: facade over DAO and Business layer
+```
+BankingService
+    void transferFunds(Account fromAcc, Account toAcc, double amt){
+        // SELECT balance ->DAO
+        // update fromAcc -> DAO 
+        // update toACC --> DAO
+        // INSERT to Tx table --> DAO
+        // send SMS
+        // Send EMAIL
+    }
+
+```
+7) UI / Client
 
 
+packages --> folders for logically grouping
 
+```
+package com.visa.project.entity
+public class Employee {
+    
+}
 
+    com
+     |
+     visa
+        |
+        project / module
+            |
+            entity
+                ... classes
+            dao
+                ...classes
+            service
+                ...classes
+    ...
+```
+
+Relationship between objects.
+1) Generalization and Specialziation
+2) Realization
+3) Association [ Composition or Aggregation]
+4) Uses A
+
+Bad Code:
+```
+    class Tv {
+        id,
+        name,
+        price,
+        screenSize,
+        screenType
+        getters / setters
+    }
+
+    class Mobile {
+         id,
+        name,
+        price,
+        camera,
+        connectivity,
+        memory
+    }
+
+```
+
+Modify:
+```
+How Constructors are chained
+class Product {
+    Product() {
+        "P1"
+    }
+
+    Product(id, name) {
+        "P2"
+    }
+}
+
+    class Mobile {
+        Mobile(){
+            "M1"
+        }
+
+        Mobile(id, name, price, connect) {
+            super(id, name);
+            "M2"
+        }
+    }
+
+    new Mobile(); // P1, M1
+    new Mobile(24, "iPhone", 89000.00, "5G"); // P1, M2 to // P2, M2
+```
+
+How Methods work?
+
+```
+    class Product {
+        getPrice() {
+            return 100;
+        }
+    }
+
+    class Mobile extends Product {
+        getPrice() {
+            return 500;
+        }
+
+        getConnectivity() {
+            return "5G"
+        }
+    }
+
+    Mobile m = new Mobile();
+    m.getPrice(); // 500
+    m.getConnectivity(); // 5G
+
+    Product p = new Mobile();
+    p.getPrice(); // 500
+    p.getConnectiivty(); // ERROR
+
+```
 
 
 
