@@ -404,5 +404,122 @@ new Thread(new Runnable(){
     }
 })
 ```
+An anonymous class is a class without a name that is declared and instantiated in one step. 
+It’s typically used when you need a short-lived implementation of an interface or abstract class.
+
+When NOT to Use Anonymous Classes
+ * When logic is large
+ * When reused in multiple places
+ * When readability suffers
+
+===============
+
+Generics:
+* Generic class
+* generic method
+* generic interfaces
+
+```
+    class Rectangle {
+        int width;
+        int breadth;
+    }
+
+    class DRectangle {
+        double width;
+        double breadth;
+    }
+
+    Solution:
+    class Rectangle<T> { ===> class Rectnagle {
+        T width;                    Object width;
+        T breadth;                  Object breadth;
+    }                           }
+
+    Rectangle<Integer> r1 = new Rectangle<Integer>(5,6);
+    Rectangle<Double> r2 = new Rectangle<Double>(4.5, 1.2);
+    Rectangle<String> r3  = new Rectangle<String>("A", "B");
+
+     class Rectangle<T extends Number> { ===> class Rectnagle {
+        T width;                                 Number width;
+        T breadth;                              Number breadth;
+    }                                    }
+
+    class  LinkedList<T extends Product> {
+        T node;
+    }
+
+    class Pair<K,V> {
+        K key;
+        V value;
+    }
+
+    Pair<String, Double> pairs = new Pair<>("Java", 8902.33);
+
+    Generics can't be used for primitive type [int, double, short, ...]
+
+    Integer is a typewrapper for int
+    Double is a typewrapper for double
+
+    int x = 100; 
+    Integer iX = x; // boxing
+
+    int y = iX; // unboxing
+```
+Java: Class, interface, Annotation, Enum
+
+Annotations: Metadata
+1) Who uses it?
+    a) COMPILER
+    b) CLASSLOADER
+    c) RUNTIME
+2) Where can I use it?
+a) METHOD --> @Override
+b) TYPE -> class, interface , annotation
+c) fields
+d) parameters
 
 
+``` 
+    Assume Device is a annotation:
+    Target --> Type
+    Retention -> CLASS
+
+    @Device(name="samsung")
+    public class CandyCrush extends Game {
+
+    }
+
+
+    @Table(name="books")
+    public class Book {
+
+        @Column(name="book_id", type="NUMERIC(10)")
+        int id;
+
+        @Column(name="BOOK_TITLE")
+        String title;
+
+        @Column(name="AMT", type="NUMERIC(12,2)")
+        double price;
+    }
+
+
+    DDL and DML
+    create table books (book_id NUMERIC(10), BOOK_TITLE varchar(255), AMT NUMERIC(12,2));
+
+    insert into books values (...);
+
+```
+
+String is immutable
+StringBuffer and StringBuilder are muttable.
+
+String str = "Hello";
+
+str += " World";
+str += " 123";
+str += " ...";
+
+
+System.out.println(str); // Hello World 123 ...

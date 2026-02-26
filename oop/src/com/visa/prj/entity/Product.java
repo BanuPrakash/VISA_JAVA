@@ -1,6 +1,10 @@
 package com.visa.prj.entity;
 
+import com.visa.prj.annotations.Column;
+import com.visa.prj.annotations.Table;
+
 // extends Object
+@Table(name="products")
 public abstract class Product implements  Comparable{
     private int id;
     private String name;
@@ -15,6 +19,7 @@ public abstract class Product implements  Comparable{
         this.price = price;
     }
 
+    @Column(name="PID", type = "INTEGER")
     public int getId() {
         return id;
     }
@@ -23,6 +28,7 @@ public abstract class Product implements  Comparable{
         this.id = id;
     }
 
+    @Column(name="PRD_NAME")
     public String getName() {
         return name;
     }
