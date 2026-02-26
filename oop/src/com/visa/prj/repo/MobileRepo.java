@@ -3,6 +3,9 @@ package com.visa.prj.repo;
 import com.visa.prj.entity.Mobile;
 
 public interface MobileRepo {
-    void addMobile(Mobile m);
+
+    // all methods by default are public and abstract
+    public abstract void addMobile(Mobile m);
     Mobile getMobile(int id);
 }
+

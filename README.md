@@ -311,4 +311,98 @@ Why program to interface?
 5) LOOSE COUPLING
 6) OCP
 
+```
+    interface Swim {
+        swim();
+    }
+
+    interface Dance {
+        dance()
+    }
+
+    interface Fight {
+        fight();
+    }
+
+    public class Actor implements Dance {
+        public void dance() {
+
+        }
+    }
+
+    public class Hero extends Actor implements Fight, Swim {
+        fight() {}
+        swim() {}
+    }
+
+    Fight f = new Hero();
+    f.fight();
+    f.dance(); // error
+
+    Swim s = (Swim) f;
+    s.swim(); // works
+
+    Dance d = (Dance) s;
+    d.dance();
+
+---
+
+interface Flyable {
+    void fly();
+}
+
+class Bird implements Flyable {
+    // state
+    // behaviour
+    public void fly() {
+
+    }
+}
+
+class AeroPlane implements Flyable {
+    // state
+    // behaiour
+     public void fly() {
+
+    }
+}
+
+class FlyAttempt implements Flyable {
+     public void fly() {
+        jump from 4th Floor
+    }
+}
+
+Flyable f = new Flyable() {
+     public void fly() {
+        jump from 4th Floor
+    }
+}
+
+f.fight();
+
+// Unit of Work - Thread
+interface Runnable {
+    void run();
+}
+
+public class WorkerThread implements Runnable {
+    //
+    public void run() {
+        //
+    }
+}
+
+new Thread(new WorkerThread()).start();
+
+new Thread(new Runnable(){
+    public void run() {
+        while(true) {
+            Thread.sleep(1000);
+            sout(Date.now());
+        }
+    }
+})
+```
+
 
