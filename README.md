@@ -286,5 +286,29 @@ Visibility:
 3) protected -> within class, other classes within same package, other inherited classes even if present outside package
 4) public 
 
+Override, reflection API.
+
+================================
+Realization relationship:
+
+Represents a contract fulfillment where a class provides the implementation for methods declared in an interface.
+
+"implements" connection between two model elements, where a classifier (like a class) fulfills the contract or behaviors defined by another (like an interface or component).
+
+Java provides interface for realization relationship.
+
+interface InterfaceName {
+    abstract methods()
+    can have constants
+    can't have state
+}
+
+Why program to interface?
+1) DESIGN
+2) IMPLMENTATION
+3) INTEGRATION
+4) TESTING
+5) LOOSE COUPLING
+6) OCP
 
 
