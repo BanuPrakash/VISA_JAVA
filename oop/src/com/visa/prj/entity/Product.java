@@ -1,6 +1,7 @@
 package com.visa.prj.entity;
 
-public class Product {
+// extends Object
+public abstract class Product {
     private int id;
     private String name;
     private double price;
@@ -36,5 +37,20 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+//    public boolean isExpensive() {
+//        return false;
+//    }
+
+    public abstract  boolean isExpensive(); // pure virtual function
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

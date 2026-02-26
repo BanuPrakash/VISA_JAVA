@@ -274,11 +274,17 @@ How Methods work?
 
     Product p = new Mobile();
     p.getPrice(); // 500
-    p.getConnectiivty(); // ERROR
+    p.getConnectivity(); // ERROR
 
 ```
 
+Day 2:
 
+Visibility: 
+1) private --> within class
+2) default -> within class, other classes within same package
+3) protected -> within class, other classes within same package, other inherited classes even if present outside package
+4) public 
 
 
 
