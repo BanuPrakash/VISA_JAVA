@@ -635,3 +635,14 @@ https://rxmarbles.com/
     }
 
 ```
+Which one to use?
+```
+Use ArrayList when:
+You read more than write
+You need fast indexing
+90% real-world cases
+
+Use LinkedList when:
+You frequently insert/remove at head
+Implementing Queue/Deque behavior
+```
