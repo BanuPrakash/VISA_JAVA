@@ -19,6 +19,6 @@ public class TestSqlUtil {
 
         SQL = SqlUtil.insertSQL(book);
         // insert into books values(25, 'Java Ref', 450.00);
-        
+
     }
 }

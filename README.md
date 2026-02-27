@@ -523,3 +523,115 @@ str += " ...";
 
 
 System.out.println(str); // Hello World 123 ...
+
+=============================
+
+Exception and Exception Handling
+
+Any abnormal condition that arises during program executions is an exception
+Exception is an object:
+1) What went Wrong?
+2) Why?
+3) Where?
+
+Exception --> Exception Type or Error Type
+Exception -> can be handled and provide alternate flow / solution
+Error -> Program terminates, mo solution at runtime
+Examples of Error: StackOverflowError, OutOfMemoryError,..
+
+
+Exception Type:
+Checked or Unchecked Exception
+
+Unchecked Exception:
+NullPointerException, ArrayIndexOutOfBoundsException, ArithmeticException, ClassCastException
+
+CheckedException:
+ClassNotFoundException, SQLException, IOException , SocketException 
+
+```
+try {
+    Connection con = DriverManager.getConnection(URL, USER, PWD);
+    ...
+} catch(SQLException ex) {
+    ex.printStackTrace()l
+}
+
+try {
+    ..
+} catch(FileNotFoundException ex) {
+
+} catch(IOException ex) {
+
+} catch(Exception ex) {
+    
+}
+```
+=========
+
+Java Collection Framework
+* interfaces
+* implementation classes
+* Utility / Algorithm classes
+
+```
+List                                        Set
+* Ordered                                   not-ordered
+* index based operations                    not-support
+* duplicates                                unique
+* supports re-ordering                      not-supported
+Vector, Stack, ArrayList,LinkedList         HashSet, TreeSet
+
+Vector and Stack are legacy: not supposed to be used [ methods are synchronized]
+```
+
+Different ways of using List.
+1) ArrayList list = new ArrayList(); // BAD
+
+2) List list = new ArrayList(); // Better , but not good
+    Not TypeSafe:
+    list.add("A");
+    list.add(34);
+    list.add(new Date());
+
+    list.get(0); // Need type checking
+
+3) List<Product> list = new ArrayList<>(); // GOOD
+
+Note: arrays are covariant
+Generic collections are not covariant
+
+===============
+
+HOF: High Order Functions
+1) functions accepting function as argument
+2) function returns a function
+
+Treat function as first-class member
+
+Streams: sequence of data flow
+Commonly used HOF are:
+1) filter : subset based on Predicate fn
+2) map : transform
+Example: List<Product> ==> List<Double>
+List<Product> ==> UI Card
+3) reduce
+Aggregate: sum(), count(), avg() 
+4) forEach
+5) flatMap
+https://rxmarbles.com/
+
+
+```
+
+    filter(List src,Predictate predicateFn) {
+        List dest = new ...
+        for(Object elem: src) {
+            if(predicateFn(elem)) {
+                dest.add(elem)
+            }
+        }
+        return dest;
+    }
+
+```
