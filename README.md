@@ -837,3 +837,4 @@ volatile --> marker to safe no optimization
 
 ==========================================================
 
+Inter-thread communication : wait(), wait(ms), notify() and notifyAll() --> Object methods

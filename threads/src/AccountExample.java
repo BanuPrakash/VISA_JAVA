@@ -3,11 +3,17 @@ public class AccountExample {
         Account account = new Account(5000);
         TransactionThread t1 = new TransactionThread(account, "Danny", 2500, TransactionType.CREDIT);
         TransactionThread t2 = new TransactionThread(account, "\tSwetha", 2000, TransactionType.CREDIT);
-        TransactionThread t3 = new TransactionThread(account, "\t\tHaritha", 3000, TransactionType.DEBIT);
+        TransactionThread t3 = new TransactionThread(account, "\t\tHaritha", 6000, TransactionType.DEBIT);
 
+
+        t3.start();
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         t1.start();
         t2.start();
-        t3.start();
         // Barrier
         // main thread waits for t1, t2 and t3 to finish execution
         try {

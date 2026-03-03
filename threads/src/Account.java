@@ -23,17 +23,33 @@ public class Account {
         this.balance = balance;
     }
 
-    public void deposit(String name, double amt) {
+    // critical sections
+    public synchronized void deposit(String name, double amt) {
         System.out.println(name + " trying to deposit : " + amt);
         double bal = getBalance();
         System.out.println(name + " got balance : " + bal);
         bal += amt;
         System.out.println(name + " setting balance : " + bal);
         setBalance(bal);
+        notifyAll();
     }
 
-    public void withdraw(String name, double amt) {
+    // critical sections
+    public synchronized void withdraw(String name, double amt) {
+        int count = 0;
         System.out.println(name + " trying to withdraw : " + amt);
+        while(getBalance() < amt) {
+            System.out.println("Insufficient balance, going to wait list...");
+            count++;
+            if( count >= 3) {
+                return;
+            }
+            try {
+                wait(25000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         double bal = getBalance();
         System.out.println(name + " got balance : " + bal);
         bal -= amt;
