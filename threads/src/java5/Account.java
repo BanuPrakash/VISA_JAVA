@@ -1,9 +1,11 @@
-import java.util.concurrent.atomic.AtomicInteger;
+package java5;
+
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Account {
     private double balance;
-
+    private Lock balanceLock = new ReentrantLock();
     public Account(double balance) {
         this.balance = balance;
     }
@@ -27,37 +29,35 @@ public class Account {
     }
 
     // critical sections
-    public synchronized void deposit(String name, double amt) {
-        System.out.println(name + " trying to deposit : " + amt);
-        double bal = getBalance();
-        System.out.println(name + " got balance : " + bal);
-        bal += amt;
-        System.out.println(name + " setting balance : " + bal);
-        setBalance(bal);
-        notifyAll();
+    public  void deposit(String name, double amt) {
+        try {
+            balanceLock.lock();
+            System.out.println(name + " trying to deposit : " + amt);
+            double bal = getBalance();
+            System.out.println(name + " got balance : " + bal);
+            bal += amt;
+            System.out.println(name + " setting balance : " + bal);
+            setBalance(bal);
+        } finally {
+            balanceLock.unlock();
+        }
     }
 
 
     // critical sections
-    public synchronized void withdraw(String name, double amt) {
+    public  void withdraw(String name, double amt) {
+        try {
+            balanceLock.lock();
         int count = 0;
         System.out.println(name + " trying to withdraw : " + amt);
-        while(getBalance() < amt) {
-            System.out.println("Insufficient balance, going to wait list...");
-            count++;
-            if( count >= 3) {
-                return;
-            }
-            try {
-                wait(25000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
+
         double bal = getBalance();
         System.out.println(name + " got balance : " + bal);
         bal -= amt;
         System.out.println(name + " setting balance : " + bal);
         setBalance(bal);
+        } finally {
+            balanceLock.unlock();
+        }
     }
 }

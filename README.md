@@ -838,3 +838,68 @@ volatile --> marker to safe no optimization
 ==========================================================
 
 Inter-thread communication : wait(), wait(ms), notify() and notifyAll() --> Object methods
+
+```
+class Util {
+    public copyElements(List<Product> dest, List<Product> src) {
+        syncronized(dest) {
+            syncronized(src) {
+                ... 
+            }
+        }
+    }
+}
+class BankingService {
+    public  void transferFunds(Account fromAcc, Account toAcc, double amt) {
+       synchronized(fromAcc) {
+        synchronized(toAcc) {
+            ...
+        }
+       }
+    }
+}
+
+T1: SA105 to SA890 5000
+T2: SA890 to SA911 3500
+
+```
+
+Issues with Java Concurrency:
+1) One lock per object
+Solution: Lock api instead of synchronized
+2) Runnable : doesn't return a value, nor throws a Exception
+void run();
+Solution : Callable and Future
+interface Callable<T> {
+    T call() throws Exception;
+}
+
+3) Issues with syncronized and deadlocks
+
+4) No timeout for acquiring lock
+
+```
+
+class BankingService {
+    public  void transferFunds(Account fromAcc, Account toAcc, double amt) {
+      if(fromAcc.balanceLock.tryLock(2000)) { // T1 105 // T2 890
+        try {
+            if(toAcc.balanceLock.tryLock(2000)) { // T1 890 T2 105
+              try {
+                    // do transaction
+                } finally {
+                    toAcc.balanceLock.unlock();
+                }
+        }
+        } finally {
+            fromAcc.balanceLock.unlock();
+        }
+       }
+    }
+}
+T1: SA105 to SA890 5000
+T2: SA890 to SA105 3500
+```
+
+a() -> b() -> c();
+
