@@ -646,3 +646,194 @@ Use LinkedList when:
 You frequently insert/remove at head
 Implementing Queue/Deque behavior
 ```
+
+Funtional interfaces:
+1) Function
+2) BiFunction
+3) BinaryOperator
+4) Predicate
+5) Consumer
+
+Data flows in a stream only when we have a terminal function connected:
+1) reduce
+2) forEach
+3) collect
+
+================
+
+Set -> unique
+HashSet [90%]
+TreeSet [2 %] --> sorted -> RedBlack Tree
+LinkedHashSet [8 %] -> maintains order
+
+HashSet uses hashCode() and equals() -> duplicate identification and ordering
+
+HashCode: Numerical representaion of object based on state
+1) Similar objects should have same hashcode
+2) dissimilar objects can also have same hashcode
+
+Bad HashCode
+```
+    public class Rectangle {
+        width, breadth;
+
+        public int hashCode() {
+            return width * breadth;
+        }
+    }
+
+    Rectangle(4,5) -> 20
+    Rectangle(5,4) -> 20
+    Rectangle(20,1) -> 20
+    ..
+```
+
+Map --> Key / Value 
+Registry, Dictionary , Form data, 
+HashMap, TreeMap [keys are sorted], LinkedHashMap [ordering of Key is maintained]
+Hashtable (legacy)
+
+
+=================
+
+```
+    Key / Value Pair --> YES
+
+        Map
+        Retreive based on Key --> HashMap / Hashtable (legacy)
+            Object used for Key has to have hashCode() and equals()
+            Key has to be unique [ only one key can be null]
+            Value can be duplicate, can have null values
+        Store based on sorted Keys -> TreeMap [ RedBlack Tree]
+            Avoid this for frequent add /remove operations
+            Null key not supported
+        Store keys based on insertion order: LinkedHashMap
+        ConcurrentHashMap --> thread safe Map container
+    
+    Not Key / value pair
+        Unique values - Set
+            HashSet, for faster access [ good for arbitrary add / remove operations]
+            TreeSet - sorted by values
+        Set<String> set = new TreeSet<>(); // this uses comparable interface
+
+        Set <String> set = new TreeSet<>((s1, s2) -> {
+            int diff = s1.length() - s2.length();
+            if(diff == 0 ) {
+                diff = s1.compareTo(s2);
+            }
+            return diff;
+        }); // comparator
+
+     Not Unique:
+        List:
+            ArrayList: not efficient for add / remove from arbitrary position
+            efficient for index based operation
+            LinkedList: where hugh data needs to be stored
+             efficient for add / remove from arbitrary position
+            
+    Stack or Queue: FILO or LIFO --> LinkedList
+    Queue: PriorityQueue:   
+    ArrayBlockingQueue    
+
+```
+
+Garbage Collection:
+
+C / C++ : we allocate and release memory [free or delete]
+
+MSC, G1GC, Epsilon GC , ZGC
+
+java  -XX:+UseEpsilonGC -jar YourApplication.jar
+
+System.gc(); // request and not a demand
+
+================
+
+Java Concurrent Programming
+
+Why Concurrent Programming?
+* Avoid starvation
+* Resource re-usability
+* Application can continue even if one unit of work fails.
+
+JVM waits for the last non-daemon thread to finish its execution, doesn't wait for Daemon threads to finish job.
+
+Main Thread is a non-daemon thread
+
+Daemon Thread
+D1, D2 , D3
+Non-Daemon Threads
+N1, N2 , N3
+
+=======================
+
+Java Threads --> Posix threads [ OS Threads]
+```
+
+interface Runnable {
+    void run();
+}
+
+class Thread {
+
+}
+
+thread class contains life-cycle methods to handle threads
+a) start()
+b) yield()
+c) sleep()
+d) join()
+e) interrupt()
+
+deprecated methods:
+f) stop()
+g) suspend()
+i) resume()
+
+
+Thread t = new Thread();
+t.start(); 
+
+class GrammerCheck implements Runnable {
+    ..
+    public void run() {
+        ...
+    }
+}
+
+
+Thread t = new Thread(new GrammerCheck());
+t.start();
+
+class SpellCheck extends Thread {
+     ..
+    public void run() {
+        ...
+    }
+}
+
+SpellCheck t = new SpellCheck();
+t.start();
+
+```
+
+Thread Safety:
+- data doesn't get corrupted in multithreaded environment
+
+local variables -- thread safe
+class variables -- static -- metaspace -- shared by all Threads -- not thread safe
+instance var -- heap -- shared by threads -- not thread safe
+immutable objects -- heap -- shared by threads -- thread safe
+volatile members -- heap -- shared -- thread safe [ only atomic members should be marked volatile] - boolean
+float f = 1.6f;
+f += 10.3;
+
+int x = 10;
+x++;
+
+volatile boolean flag = true;
+
+volatile --> marker to safe no optimization
+
+==========================================================
+

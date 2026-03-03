@@ -1,6 +1,9 @@
 package com.visa.prj.entity;
 
+import java.util.Objects;
+
 public class Product implements Comparable<Product> {
+
     private int id;
     private String name;
     private double price;
@@ -63,5 +66,25 @@ public class Product implements Comparable<Product> {
     @Override
     public int compareTo(Product o) {
         return this.id - o.id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (id != product.id) return false;
+        if (!Objects.equals(name, product.name)) return false;
+        return Objects.equals(category, product.category);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        return result;
     }
 }
