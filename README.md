@@ -903,3 +903,102 @@ T2: SA890 to SA105 3500
 
 a() -> b() -> c();
 
+=====================
+
+docker pull mysql:latest
+docker run --name my-mysql  -e MYSQL_ROOT_PASSWORD=Welcome123 –p 3306:3306 -d mysql:latest
+
+Maven:
+Java Build tool
+* Manage dependencies
+* execute goals
+
+Dependency Libaries are available in the form of jar files.
+
+Java Archive
+
+1) We can add jars to project by downloading them from different repositoriries
+
+pom -> Project Object Model
+
+
+===============
+
+JDBC: Java Database Connectivity
+integration library used to connect to RDBMS
+
+JDBC provides interfaces; implementation classes are provided by database vendors
+
+Steps :
+1) Load database vendor provided classes into JRE
+Class.forName("driver class");
+
+Class.forName("com.mysql.jdbc.Driver");
+
+Class.forName("oracle.jdbc.Driver");
+
+
+
+2) Establish a database connection: should be short lived
+
+Connection con = DriverManager.getConnection(URL, USER, PWD);
+
+3) Send SQL :DDL or DML
+a) Statement: for SQL which is fixed, same SQL for n Requests
+
+select * from products
+
+b) PreparedStatement: for SQL which takes IN parameters
+
+select * from users where username = ? and password = ?
+
+insert into products values (?, ?, ? , ?);
+
+AVOID SQL Concatination:
+
+"select * from users where username = '" + uname + "'  and password = '" + pwd + "'";
+
+
+c) CallableStatement: to invoke functions / Stored procedures of database
+
+```
+CREATE PROCEDURE GetCustomersByCity
+  @City nvarchar(50)
+AS
+BEGIN
+  SELECT * FROM Customers
+  WHERE City = @City;
+END;
+
+```
+
+call GetCustomersByCity('BLORE')
+
+===============
+
+Methods:
+1) int executeUpdate() == INSERT, DELETE and UPDATE SQL
+2) ResultSet executeQuery() == SELECT 
+ResultSet is a cursor to the selected view
+ResultSetMetaData --> for column count, column names, datatype of columns , ...
+
+note: Always use finally block to release resources
+
+=============
+
+Once MySQL container is running on Docker.
+
+```
+    Need to access container from terminal
+    docker exec -it my-mysql bash
+
+    # mysql -u root -p
+    mysql> create database VISA_JAVA;
+    mysql> use VISA_JAVA;
+    mysql> create table products (id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), price double, qty int);
+
+    mysql> insert into products values (0, 'iPhone 16', 89000.00, 100);
+    mysql> insert into products values (0, 'Sony Bravia', 214000.00, 100);
+    mysql> insert into products values (0, 'Wacom', 5000.00, 100);
+    
+```
