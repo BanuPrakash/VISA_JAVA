@@ -7,10 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepoSqlImpl implements ProductRepo {
-    private static String URL = "jdbc:mysql://localhost:3306/VISA_JAVA";
-    private  static String USER = "root";
-    private static  String PWD = "Welcome123";
-    private static  String DRIVER = "com.mysql.cj.jdbc.Driver";
+//    private static String URL = "jdbc:mysql://localhost:3306/VISA_JAVA";
+//    private  static String USER = "root";
+//    private static  String PWD = "Welcome123";
+//    private static  String DRIVER = "com.mysql.cj.jdbc.Driver";
+private static String URL = "jdbc:h2:~/testing";
+    private  static String USER = "sa";
+    private static  String PWD = "";
+    private static  String DRIVER = "org.h2.Driver";
 
     static  {
         // read from config files
