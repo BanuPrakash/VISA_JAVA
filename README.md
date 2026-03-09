@@ -1144,3 +1144,38 @@ GET: Browser address bar, Hyperlink
 IDEMPOTENT
 
 POST, PUT, PATCH are not safe methods
+
+Query Parameter
+http://abc.com/products?page=1&size=20
+
+req.getParameter("page");
+
+http://abc.com/products?category=mobile&category=tv
+
+String[] cats = req.getParameterValues("category")
+
+Servlet was never intented for View Generation, meant for application logic
+
+MVC : Model View Controller
+model: business data and logic 
+Controller: Servlet/Filter --> Application Logic [ Flow of application]
+View: Server Side Rendering, CSR --> Template based
+Interpolation.
+
+req.setAttribute("products", products);
+
+
+req.getDispatcher("list.jsp").forward(req, resp);
+
+
+compilation Phase
+Internally --> JSP --> jspc --> Servlet --> javac --> .class
+
+Request processing Phase
+Servlet created for JSP executes
+```
+    _jspService(HttpServletRequest req, HttpServletResponse res) {
+        
+    }
+
+```

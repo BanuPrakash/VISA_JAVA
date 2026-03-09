@@ -29,7 +29,7 @@ public class ProductServlet extends HttpServlet {
 
         try {
             productRepo.addProduct(product);
-            resp.sendRedirect("/");
+            resp.sendRedirect("/"); // client side redirection
         } catch (PeristenceException e) {
 //            throw new RuntimeException(e);
             e.printStackTrace();
@@ -41,34 +41,44 @@ public class ProductServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html"); // MIME application/json image/gif image/png text/xml
         ProductRepo productRepo = new ProductRepoSqlImpl();
-
-        PrintWriter out = resp.getWriter(); // Character stream
-//        ServletOutputStream out = resp.getOutputStream(); // binary
-        out.print("<html><body>");
-        out.print("<table border=\"1\">");
-        out.println("<tr>");
-            out.print("<th>ID</th><th>Name</th><th>Price</th>");
-        out.print("</tr>");
-
         try {
             List<Product> products = productRepo.getProducts();
-            for(Product p : products) {
-               out.println("<tr>");
-                out.print("<td>");
-                    out.print(p.getId());
-                    out.print("</td>");
-                out.print("<td>");
-                     out.print(p.getName());
-                out.print("</td>");
-                out.print("<td>");
-                        out.print(p.getPrice());
-                out.print("</td>");
-               out.print("</tr>");
-            }
+            req.setAttribute("products", products);
+            req.getRequestDispatcher("list.jsp")
+                    .forward(req, resp);
         } catch (FetchException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        out.print("</table>");
-        out.print("</body></html>");
+
+
+//
+//        PrintWriter out = resp.getWriter(); // Character stream
+////        ServletOutputStream out = resp.getOutputStream(); // binary
+//        out.print("<html><body>");
+//        out.print("<table border=\"1\">");
+//        out.println("<tr>");
+//            out.print("<th>ID</th><th>Name</th><th>Price</th>");
+//        out.print("</tr>");
+//
+//        try {
+//            List<Product> products = productRepo.getProducts();
+//            for(Product p : products) {
+//               out.println("<tr>");
+//                out.print("<td>");
+//                    out.print(p.getId());
+//                    out.print("</td>");
+//                out.print("<td>");
+//                     out.print(p.getName());
+//                out.print("</td>");
+//                out.print("<td>");
+//                        out.print(p.getPrice());
+//                out.print("</td>");
+//               out.print("</tr>");
+//            }
+//        } catch (FetchException e) {
+//            e.printStackTrace();
+//        }
+//        out.print("</table>");
+//        out.print("</body></html>");
     }
 }
