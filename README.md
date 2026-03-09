@@ -1112,7 +1112,29 @@ Business Logic: Java Objects like Service, DAO / Repo
 
 ==============
 
+```
+Servlet is an interface
+    init(), destroy() ,service(ServletRequest req, ServletResponse res)
+GenericSevlet implements Servlet interface
+    public void service(ServletRequest req, ServletResponse res)
+HttpServlet extends GenericServlet
+   void doGet(HttpServletRequest req, HttpServletResponse res)
+   void doPost(HttpServletRequest req, HttpServletResponse res)
+   void doPut(HttpServletRequest req, HttpServletResponse res)
+   void doDelete(HttpServletRequest req, HttpServletResponse res)
+   void service(HttpServletRequest req, HttpServletResponse res)
 
+@WebServlet("/products")
+public class ProductServlet extends HttpServlet {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) {
 
-mvn compile
-mvn package
+    }
+}
+```
+mvn clean
+mvn compile --> trigger compile
+mvn package --> trigger war plugin
+mvn jetty:run
+mvn jetty:run  -Djetty.http.port=9999
+
+http://localhost:8080/products
