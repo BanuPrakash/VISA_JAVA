@@ -1001,4 +1001,118 @@ Once MySQL container is running on Docker.
     mysql> insert into products values (0, 'Sony Bravia', 214000.00, 100);
     mysql> insert into products values (0, 'Wacom', 5000.00, 100);
     
+    java -jar h2-2...jar
+
+     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.11.0</version>
+                    <configuration>
+                        <source>17</source>
+                        <target>17</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.4.0</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+                <!-- embedded JETTY server -->
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>11.0.15</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.34</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- web -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 ```
+Java Std Edition: JDK, language constructs
+
+Java Enterprise Edition: Applications of large scale and heterogenoius clients.
+* Web Components [now a days we have frameworks on top of it, Spring, Struts, Play]
+* Enterprise components : EJB [alternate we have Spring and JPA]
+* JNDI
+...
+
+
+============
+
+Web Server: works on HTTP / HTTPS protocol
+Apache, NginX, IIS, CloudFlare, ...
+
+Servlet Technology based on Java, server side running code.
+
+Engine manages the life-cycle of servlets
+
+```
+    <servlet>
+        <servlet-name>First</servlet-name>
+        <servlet-class>com.visa.prj.web.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+         <servlet-name>First</servlet-name>
+         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+
+    @WebServlet("/login")
+    public class LoginServlet extends HttpServlet {
+
+    }
+```
+
+
+Java Web Components: Servlet Tech
+1) Servlet [Application Logic]
+2) Filter [Interceptor pattern like
+Security: Authenitication and Authorizartion.
+Logging, Encrypt/ decrypt, ..
+]
+3) Listener [ executed based on events like start/stop of engine, Session created / destroyed.
+Added item to session, ...]
+4) JSP / ThymeLeaf [SSR]
+
+Business Logic: Java Objects like Service, DAO / Repo
+
+==============
+
+
+
+mvn compile
+mvn package
