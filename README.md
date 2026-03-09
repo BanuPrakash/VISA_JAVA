@@ -1194,3 +1194,7 @@ Directives: like import
 
 In JSP pages:
 request, response, session, page, context are implicit objects
+
+
+https://www.classmarker.com/online-test/start/?quiz=xk469a7d20429a97
+
