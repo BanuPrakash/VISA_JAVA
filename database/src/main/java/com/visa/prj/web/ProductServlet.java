@@ -44,7 +44,7 @@ public class ProductServlet extends HttpServlet {
         try {
             List<Product> products = productRepo.getProducts();
             req.setAttribute("products", products);
-            req.getRequestDispatcher("list.jsp")
+            req.getRequestDispatcher("print.jsp")
                     .forward(req, resp);
         } catch (FetchException e) {
             throw new RuntimeException(e);

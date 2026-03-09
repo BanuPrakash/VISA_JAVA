@@ -1175,7 +1175,22 @@ Request processing Phase
 Servlet created for JSP executes
 ```
     _jspService(HttpServletRequest req, HttpServletResponse res) {
-        
+
     }
 
+Scriptlet: JAva Code
+<%
+
+%>
+
+Expression
+<%= x %>
+
+Similar to out.print(x)
+
+Directives: like import
+<%@ %>
 ```
+
+In JSP pages:
+request, response, session, page, context are implicit objects
