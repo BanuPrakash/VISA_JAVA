@@ -1131,6 +1131,7 @@ public class ProductServlet extends HttpServlet {
     }
 }
 ```
+Goals:
 mvn clean
 mvn compile --> trigger compile
 mvn package --> trigger war plugin
@@ -1138,3 +1139,8 @@ mvn jetty:run
 mvn jetty:run  -Djetty.http.port=9999
 
 http://localhost:8080/products
+
+GET: Browser address bar, Hyperlink
+IDEMPOTENT
+
+POST, PUT, PATCH are not safe methods

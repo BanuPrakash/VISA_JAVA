@@ -1,6 +1,7 @@
 package com.visa.prj.web;
 
 import com.visa.prj.dao.FetchException;
+import com.visa.prj.dao.PeristenceException;
 import com.visa.prj.dao.ProductRepo;
 import com.visa.prj.dao.ProductRepoSqlImpl;
 import com.visa.prj.entity.Product;
@@ -17,6 +18,25 @@ import java.util.List;
 
 @WebServlet("/products")
 public class ProductServlet extends HttpServlet {
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       Product product = Product.builder().
+               name(req.getParameter("name"))
+                       .price(Double.parseDouble(req.getParameter("price"))).
+               qty(100).
+               build();
+        ProductRepo productRepo = new ProductRepoSqlImpl();
+
+        try {
+            productRepo.addProduct(product);
+            resp.sendRedirect("/");
+        } catch (PeristenceException e) {
+//            throw new RuntimeException(e);
+            e.printStackTrace();
+            resp.sendRedirect("error.jsp?err=" + e.getMessage());
+        }
+    }
+
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html"); // MIME application/json image/gif image/png text/xml
