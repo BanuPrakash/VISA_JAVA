@@ -1213,3 +1213,130 @@ HttpSession API
 
 if exists use the session object:
  HttpSession session = req.getSession(false);
+
+ ===========================
+
+ Servlet Container / Web Container: Life-cycle management and DI - Limited to Web components
+
+ Spring Framework and JPA Framework
+
+ Spring Framework:
+ Provides a lightweight container for building enterprise applications.
+ DI and life cycle management of bean.
+ Bean -- any reusable software component [java 1.2]
+ Bean - spring perspective -- any object managed by spring container.
+
+ Why DI?
+ Loosely coupled application.
+
+ UI -> Service -> Repository -> database
+
+ UI < service < Repository < database
+
+ =====================================================
+
+ uses XML or Annotation as metadata for life-cycle management and DI
+
+ ```
+  interface EmployeeRepo {
+    void addEmployee(Employee e);
+  }  
+
+  public class EmployeeRepoMongoDb implements EmployeeRepo {
+    public  void addEmployee(Employee e) {
+        db.collections.insert(e);
+    }
+  }
+
+  public class EmployeeRepoMySQL implements EmployeeRepo {
+    public  void addEmployee(Employee e) {
+        insert into ...
+    }
+  }
+
+ // Setter DI
+  public class AppService {
+    private EmployeeRepo empRepo;
+
+    public AppService(EmployeeRepo er) {
+        empRepo = er;
+    }
+    public void setRepo(EmployeeRepo er) {
+        empRepo = er;
+    }
+    public void insert(Employee e) {
+        empRepo.addEmployee(e);
+    }
+  }
+
+  beans.xml
+  <beans>
+    <bean id="mongo" class="com.visa.prj.repo.EmployeeRepoMongoDb" />
+    <bean id="mysql" class="com.visa.prj.repo.EmployeeRepoMySQL" />
+    <bean id="app" class ="com.visa.prj.service.AppService">
+        <constructor arg="0" ref="mongo" />
+    </bean>
+  </beans>
+
+
+<beans>
+    <bean id="mongo" class="com.visa.prj.repo.EmployeeRepoMongoDb" />
+    <bean id="mysql" class="com.visa.prj.repo.EmployeeRepoMySQL" />
+    <bean id="app" class ="com.visa.prj.service.AppService">
+        <property name="repo" ref="mongo" />
+    </bean>
+  </beans>
+
+  ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+  AppService service = ctx.getBean("app", AppService.class);
+  service.insert(...);
+ ```
+
+Annotation based metadata:
+Spring Container instantiates objects which has one of these annotations at class level.
+1) @Component
+2) @Repository
+3) @Service
+4) @Configuration
+5) @Controller
+6) @RestController
+7) @ControllerAdvice
+
+```
+interface EmployeeRepo {
+    void addEmployee(Employee e);
+  }  
+
+employeeRepoMongoDb
+
+  @Repository
+  public class EmployeeRepoMongoDb implements EmployeeRepo {
+    public  void addEmployee(Employee e) {
+        db.collections.insert(e);
+    }
+  }
+
+
+
+  @Service
+  public class AppService {
+    
+    @Autowired
+    EmployeeRepo er;
+   
+    public void insert(Employee e) {
+        empRepo.addEmployee(e);
+    }
+  }
+
+ApplicationContext ctx = new AnnotationConfigApplicationContext();
+ctx.scan("com.visa.prj");
+```
+
+Spring Boot is a framework on top of Spring Framework
+Spring Boot 3 on top of Spring Framework 6
+
+Highly opiniated Framework. Lots of configuration comes out of the box.
+
+https://github.com/spring-projects/spring-framework/blob/main/spring-jdbc/src/main/resources/org/springframework/jdbc/support/sql-error-codes.xml
+
