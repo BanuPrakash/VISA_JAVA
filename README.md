@@ -1196,5 +1196,20 @@ In JSP pages:
 request, response, session, page, context are implicit objects
 
 
-https://www.classmarker.com/online-test/start/?quiz=xk469a7d20429a97
+===========
 
+
+HTTP protocol is a stateless protocol.
+Every request from client is handled independently, no coversational state
+
+Session Tracking: To track conversational state of client.
+
+HttpSession API
+
+ Create a session if session object doesn't exist for the given user,
+ if exists use the session object:
+
+ HttpSession session = req.getSession(true);
+
+if exists use the session object:
+ HttpSession session = req.getSession(false);

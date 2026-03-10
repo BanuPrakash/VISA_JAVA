@@ -13,6 +13,13 @@
 </head>
 <body>
 <h1>Product List</h1>
+<%
+//  String user = (String) session.getAttribute("user");
+//  if( user == null) {
+//    response.sendRedirect("login.html");
+//  }
+%>
+<div>Welcome ${user} ,  <a href="logout">Logout</a></div>
 <table border="1">
   <tr>
     <th>Id</th>
