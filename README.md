@@ -1340,3 +1340,11 @@ Highly opiniated Framework. Lots of configuration comes out of the box.
 
 https://github.com/spring-projects/spring-framework/blob/main/spring-jdbc/src/main/resources/org/springframework/jdbc/support/sql-error-codes.xml
 
+
+Program arguments:
+
+ --spring.profiles.active=prod
+
+ =============
+
+ Factory method using @Bean
