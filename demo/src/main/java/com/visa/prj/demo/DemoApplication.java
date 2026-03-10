@@ -14,10 +14,10 @@ public class DemoApplication {
         AppService service = ctx.getBean("app", AppService.class);
         service.insert();
 
-        String[] beans = ctx.getBeanDefinitionNames();
-        for(String bean: beans) {
-            System.out.println(bean);
-        }
+//        String[] beans = ctx.getBeanDefinitionNames();
+//        for(String bean: beans) {
+//            System.out.println(bean);
+//        }
     }
 
 }
