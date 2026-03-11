@@ -3,6 +3,7 @@ package com.visa.prj.demo.repo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -13,6 +14,7 @@ import java.sql.Statement;
 
 
 @Repository
+@Scope("prototype")
 public class EmployeeRepoMySqlImpl implements  EmployeeRepo {
     @Autowired
     DataSource dataSource; // pool of connection

@@ -9,13 +9,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
+@Table(name="products")
 public class Product {
+    @Id
     private int id;
     private  String name;
     private  double price;
     private  int qty;
 
-    public String getData() {
-        return "AAA";
-    }
 }

@@ -26,7 +26,7 @@ public class ProductRepoSqlImpl implements ProductRepo {
         }
     }
     @Override
-    public void addProduct(Product product) throws PeristenceException {
+    public void addProduct(Product product) throws PeristenceException {    
         String SQL = "INSERT INTO products (id, name,price, qty) VALUES (0, ?, ?, ?)";
 //        Connection con = null;
         try(Connection con = DriverManager.getConnection(URL, USER, PWD)) {

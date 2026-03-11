@@ -1,0 +1,7 @@
+package com.visa.ecomapp.repo;
+
+import com.visa.ecomapp.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProductRepo extends JpaRepository<Product, Integer> {
+}

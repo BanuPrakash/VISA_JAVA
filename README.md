@@ -1348,3 +1348,100 @@ Program arguments:
  =============
 
  Factory method using @Bean
+
+ =========
+
+ Scope of Bean:
+ 1) Singleton [ by default ]
+ 2) Prototype
+ 3) RequestScope --> Web
+ ```
+ @RequestScope
+ @Service
+ public class EmpService {
+
+ }
+ internally
+ req.setAttribute("empService", new EmpService());
+ ```
+4) SessionScope
+5) ApplicationScope
+
+=====================
+
+JPA - Java Persistence API
+Specification for ORM library
+
+ORM --> Object Relational Mapping:
+Object <---> Relational database table
+fields <---> columns of table
+ORM generates DDL and DML for you
+* Hibernate -- JBoss
+* TopLink -- Oracle
+* KODO -- BEA -- Oracle
+* JDO - SUN -- Oracle
+* OpenJPA -- Apache
+
+PersistenceContext
+
+EntityManagerFactory
+
+```
+
+@Configuration 
+public class AppConfig {
+
+    @Bean("mysql-pool")
+    public DataSource getDataSource() throws  Exception{
+        ComboPooledDataSource cpds = new ComboPooledDataSource();
+        cpds.setDriverClass( "com.mysql.cj.jdbc.Driver" ); //loads the jdbc driver
+        cpds.setJdbcUrl( "jdbc:mysql://localhost:3306/VISA_JAVA" );
+        cpds.setUser("root");
+        cpds.setPassword("Welcome123");
+
+        // the settings below are optional -- c3p0 can work with defaults
+        cpds.setMinPoolSize(5);
+        cpds.setAcquireIncrement(5);
+        cpds.setMaxPoolSize(20);
+        return  cpds;
+    }
+
+    @Bean
+    public EntityManagerFactory getEmf(DataSource ds) {
+        LocalContainerEntityManagerFactoryBean emf = new ,,
+        emf.setDataSource(ds);
+        emf.setJpaVendor(new HibernateJpaVendor());
+        emf.setPackagestoScan("com.visa.prj.entity");
+        ..
+        return emf;
+    }
+}
+
+
+@Repository
+public class ProductRepo {
+    @PeristenceContext
+    EntityManager em;
+
+    public void addProduct(Product p) {
+        em.persist(p);
+    }
+}
+```
+
+JPA:
+
+Byte-buddy
+Byte Buddy is a code generation and manipulation library for creating and modifying Java classes during the runtime of a Java application and without the help of a compiler.
+
+"Java assist" can refer to two main concepts: the open-source library Javassist for bytecode manipulation
+
+CGLIB: CGLIB (Code Generation Library) is a high-performance, open-source library that generates and transforms Java bytecode, widely used in frameworks like Spring and Hibernate for creating dynamic proxies. 
+
+=========
+
+
+public interface ProductRepo extends JpaRepository<Product, Integer> {
+}
+
+ByteBuddy / Javaassist is going to create a class for this.
