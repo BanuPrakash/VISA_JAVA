@@ -1458,3 +1458,23 @@ create table in not exists, else use existing table, if required alter it.
 spring.jpa.hibernate.ddl-auto=verify
 Map to existing table. Won't allow any changes.
 Bottom to Top Approach
+
+======
+
+By default for all built-in methods of JpaRepository --> transaction is enabled.
+
+try {
+con.setAutoCommit(false);
+    // update 1
+    // update 2
+    // insert 3
+ con.commit();
+} catch(SQLException ex) {
+    con.rollback();
+}
+
+
+
+
+
+
