@@ -1445,3 +1445,16 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
 }
 
 ByteBuddy / Javaassist is going to create a class for this.
+
+https://docs.spring.io/spring-boot/appendix/application-properties/index.html
+
+spring.jpa.hibernate.ddl-auto=create
+create table on application start, drop tables on application terminate.
+
+
+spring.jpa.hibernate.ddl-auto=update
+create table in not exists, else use existing table, if required alter it.
+
+spring.jpa.hibernate.ddl-auto=verify
+Map to existing table. Won't allow any changes.
+Bottom to Top Approach
