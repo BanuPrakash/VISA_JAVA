@@ -1463,6 +1463,7 @@ Bottom to Top Approach
 
 By default for all built-in methods of JpaRepository --> transaction is enabled.
 
+```
 try {
 con.setAutoCommit(false);
     // update 1
@@ -1472,8 +1473,35 @@ con.setAutoCommit(false);
 } catch(SQLException ex) {
     con.rollback();
 }
+```
+=====
+Domain Driven Design:
+Defining bounded contexts and organizing code around business entities.
+
+An aggregate is a cluster of domain objects that are treated as a single unit for the purpose of data consistency.
+Aggregates consist of one or more entities and value objects, with one entity designated as the aggregate root.
 
 
+Without Cascade:
+```
+1 order has 5 items
+
+orderRepo.save(order);
+itemRepo.save(i1);
+itemRepo.save(i2);
+itemRepo.save(i3);
+itemRepo.save(i4);
+itemRepo.save(i5);
+
+```
+
+WithCascade:
+
+orderRepo.save(order);
+
+orderRepo.delete(order);
+
+https://www.database-answers.com/data_models/
 
 
 
