@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class CustomerClient implements CommandLineRunner {
     private final RentalService service;

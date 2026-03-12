@@ -18,12 +18,12 @@ public class BookingClient implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-           bookVehicle();
-//        returnVehicle();
+//           bookVehicle();
+        returnVehicle();
     }
 
     private void returnVehicle() {
-        System.out.println(service.returnBookedVehicle(1, dateUtil.getDate("11-03-2026 9:10:15")));
+        System.out.println(service.returnBookedVehicle(1, dateUtil.getDate("11-03-2026 09:10:15")));
     }
 
     private void bookVehicle() {
@@ -35,7 +35,7 @@ public class BookingClient implements CommandLineRunner {
         Booking booking = Booking.builder().
                 customer(Customer.builder().email("roger@visa.com").build())
                 .vehicle(Vehicle.builder().registrationNumber("DH-10-AA-0434").build())
-                .dateFrom(dateUtil.getDate("10-03-2026 4:50:11")).
+                .dateFrom(dateUtil.getDate("10-03-2026 04:50:11")).
                 build();
         System.out.println(service.doBooking(booking));
     }

@@ -44,7 +44,7 @@ public class RentalService {
                 vehicleRepo.findById(booking.getVehicle().getRegistrationNumber()).get();
         double cost = vehicle.getDailyHireRate();
 
-        Duration duration = Duration.between(returnDate, booking.getDateFrom());
+        Duration duration = Duration.between(booking.getDateFrom(),returnDate);
         long days = duration.toDays();
         double amount = cost * days;
 
@@ -52,6 +52,7 @@ public class RentalService {
         booking.setAmount(amount); // DIRTY
         // no explicit UPDATE called
         // booking became DIRTY, ORM does DIRTY CHECKING and issues UPDATE SQL
+
         return "Vehicle returned!!!";
     }
 

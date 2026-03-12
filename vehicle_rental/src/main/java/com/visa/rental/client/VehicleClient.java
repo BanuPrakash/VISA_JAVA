@@ -8,7 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 
 public class VehicleClient implements CommandLineRunner {
@@ -33,8 +33,8 @@ public class VehicleClient implements CommandLineRunner {
 
             service.addVehicle(Vehicle.builder()
                     .registrationNumber("DH-10-AA-0434")
-                    .dailyHireRate(5300.00)
-                    .fuelType("PETROL").
+                    .dailyHireRate(5300.00).
+//                    .fuelType("PETROL").
                     build());
         }
     }

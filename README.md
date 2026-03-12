@@ -1570,11 +1570,74 @@ public class Ticket {
     LocalDateTime raisedDate;
 
     @ManytoOne
-    @JoinColumn(name= "resloved_by")
+    @JoinColumn(name= "resolved_by")
     Employee resolvedBy;
     //...
-    
+
 }
 
 ```
 
+=======================
+
+Movies --> one To Many --> MovieActor ---> manyTo one --> Actor
+movies
+mid | name
+12      PULP FICTION
+14      BROKEN ARROW
+
+actors
+aid | name
+1     JOHN TRAVALOTA
+2     Bruce Wills
+3      UMA THURMAN
+
+movies_actors
+mid | aid | role | duration
+12     1 
+12      2
+12      3
+14      1  
+
+Problem Statement:
+Assigning employees to project
+
+```
+    projects
+
+    pid | name | start_date | end_date 
+
+
+    employees
+
+    email | start_date | end_date 
+
+
+   id | projects | employees        | role      | start_date | end_date
+    1.   1           a@visa.com
+    2    1           b@visa.com
+
+    3.   2           a@visa.com
+
+
+    @Table(name = "project_employees")
+    public class ProjectEmployee {
+
+
+        @ManyToOne
+        @joincolumn(name="project_fk")
+        Project project;
+
+         @ManyToOne
+        @joincolumn(name="emp_fk")
+        Employee employee;
+
+        String role;
+        //
+    }
+
+    1) add employees
+    2) add projects
+
+    3) Assign Employee to a Project
+```
