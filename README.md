@@ -1546,11 +1546,35 @@ Resolve a Ticket:
    id | raised_by     | issue          | raised_date | resolved_by | resolved_date | solution
     31  sam@visa.com    MAchine restarts      10-3-2026.    jack@visa.com 11-3-2026                      reinstalled OS
 
-    
+
 
 
 
 ```
 
 
+Ticket:
+
+```
+
+public class Ticket {
+    @Id
+    id;
+
+    @ManytoOne
+    @JoinColumn(name = "raised_by")
+    Employee raisedBy;
+
+    String issue;
+
+    LocalDateTime raisedDate;
+
+    @ManytoOne
+    @JoinColumn(name= "resloved_by")
+    Employee resolvedBy;
+    //...
+    
+}
+
+```
 
