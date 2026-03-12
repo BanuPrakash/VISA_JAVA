@@ -1515,7 +1515,42 @@ select c.fname, c.email, o.order_date, o.total from orders o left outer join cus
 r_fk;
 
 
+productRepo.findById(5);
 
+productRepo.findById(5); // Not call DB
+
+========
+
+Ticket Tracker Appllication
+1) Raise a Ticket
+2) Resolve a Ticket
+
+```
+    employees
+
+    email | first_name | last_name | department
+                                        IT
+
+
+Raise a Ticket:
+    tickets
+
+    id | raised_by     | issue              | raised_date | resolved_by | resolved_date | solution
+    31  sam@visa.com    MAchine restarts      10-3-2026.    null            null            null
+
+Resolve a Ticket:
+    Only IT teams reads unresolved tickets
+
+    Use Dirty Checking to resolve
+
+   id | raised_by     | issue          | raised_date | resolved_by | resolved_date | solution
+    31  sam@visa.com    MAchine restarts      10-3-2026.    jack@visa.com 11-3-2026                      reinstalled OS
+
+    
+
+
+
+```
 
 
 
