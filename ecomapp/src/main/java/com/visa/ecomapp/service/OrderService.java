@@ -1,6 +1,7 @@
 package com.visa.ecomapp.service;
 
 import com.visa.ecomapp.dto.ProductDTO;
+import com.visa.ecomapp.dto.ReportDTO;
 import com.visa.ecomapp.entity.Customer;
 import com.visa.ecomapp.entity.LineItem;
 import com.visa.ecomapp.entity.Order;
@@ -45,6 +46,19 @@ public class OrderService {
             ]
         }
      */
+
+    public List<ReportDTO> getReport() {
+        return orderRepo.getReport();
+    }
+
+    public List<Order> getOrders() {
+        return orderRepo.findAll();
+    }
+
+    public List<Order> orderWithItems() {
+        return orderRepo.fetchWithItems();
+    }
+
     @Transactional
     public String placeOrder(Order order) {
         double total = 0.0;

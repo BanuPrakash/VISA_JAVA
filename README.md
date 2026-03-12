@@ -1503,6 +1503,19 @@ orderRepo.delete(order);
 
 https://www.database-answers.com/data_models/
 
+    @Column(name="order_date")
+    private LocalTimeStamp orderDate = LocalTimeStamp.now();
+
+==============
+
+Many To One -> EAGER Fetching by default
+One To Many -> Lazy fetching by default
+
+select c.fname, c.email, o.order_date, o.total from orders o left outer join customers c on c.email = o.custome
+r_fk;
+
+
+
 
 
 
