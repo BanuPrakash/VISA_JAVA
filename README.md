@@ -1824,3 +1824,22 @@ Body: type the payload
 DTO is the solution: as carrier of data between client and server
 DTO --> Entity
 
+==============
+
+```
+@RestController
+@RequestMapping
+@GetMapping
+@PostMapping
+@PutMapping
+@PatchMapping
+@DeleteMapping
+@RequestBody
+@PathVariable
+@RequestParam
+@ResponseBody <<Optional>>
+
+```
+
+
+

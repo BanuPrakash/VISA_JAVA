@@ -36,7 +36,7 @@ public class ProductController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED) // 201
-    public  Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@RequestBody Product product) {
         return service.addProduct(product); // includes ID
     }
 
@@ -47,5 +47,13 @@ public class ProductController {
        return service.modifyProduct(id, price);
 //
 //        return "Product modified!!!";
+    }
+
+    @PutMapping("/{pid}")
+    public Product modifyProduct(@PathVariable("pid") int id,
+                                 @RequestBody Product product) {
+        System.out.println("Trying to update " + product);
+        // update service
+        return  product;
     }
 }
