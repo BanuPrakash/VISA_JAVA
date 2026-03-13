@@ -2,6 +2,7 @@ package com.visa.rental.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.FutureOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +32,7 @@ public class Booking {
     private Vehicle vehicle;
 
     @Column(name="date_from")
+    @FutureOrPresent(message = "Date ${validatedValue has to preset or future date")
     private LocalDateTime dateFrom;
 
 

@@ -1643,3 +1643,172 @@ Assigning employees to project
 ```
 
 https://www.classmarker.com/online-test/start/?quiz=yfg69afc38ce92a9
+
+Java Record: are immutable objects, good for DTOs
+
+public record Product(int id, String name, double price) {}
+
+Can be used instead of using lombok to generate constructor and setter.
+
+Similar to
+
+```
+@AllArgsConstructor
+@Getters
+public class Product {
+    int id;
+    String name;
+    double price;
+}
+
+```
+
+================================
+
+Building RESTful Web Services.
+
+REpresentational State Transfer.
+
+* Resource: anything on server which can be named like file, printer, database, ...
+
+* Representation: state of the resource at a given point of time
+
+* Content Negotiation: representation in various formats like XML , JSON, CSV, ..
+
+* Works with HTTP / HTTPS protocol
+
+* URL to identify resources
+* HTTP methods for CRUD operations 
+
+```
+* GET -- All resources
+get all products
+http://amazon.com/products
+Accept: application/json
+
+* GET - SubSet -- Query Parameter
+get products of a given catagory
+http://amazon.com/products?category=mobile
+http://amazon.com/products?page=1&size=20
+Accept: application/json
+
+* GET - Single - Path Parameter
+http://amazon.com/products/45
+Accept: application/json
+get by ID
+
+* http://amazon.com/customers/banuprakash.cr@gmail.com/orders
+
+* POST
+http://amazon.com/products
+Accept: application/json
+Content-type: application/json
+
+{
+    ...
+}
+
+* PUT - Major Update, payload contains new data, PATH parameter identifies
+which resource you are modifying
+
+http://amazon.com/products/45
+Accept: application/json
+Content-type: application/json
+
+{
+   qty: 100,
+   price: 8902.22
+}
+
+get product by ID
+set only new fields
+
+* PATCH - Partial Update, No payload , PATH parameter identifies
+which resource you are modifying and new data
+
+http://amazon.com/products/45?price=7881.22
+Accept: application/json
+Content-type: application/json
+
+update product set price = 7881.22 where id = 45
+
+* DELETE
+http://amazon.com/products/45
+
+Avoid:
+DELETE http://amazon.com/products?category=tv
+
+```
+
+Accept: what type of data I want from server
+text/xml, text/ csv, application/json
+
+Content-type: what type of data I am sending to server
+
+Characteristics of RESTful:
+1) Client-server 
+2) Uniform URL
+3) Stateless: each request from client has to be treated as new request, no conversational state [ no session tracking]
+4) Layered
+
+=========================
+
+Consuming RESTful:
+* Client Code like REACT / Angular for Web
+* Mobile Android / ios / React Native / Flutter / Xamarin / ..
+* APIs by different applications like C++ / .NET / Java applications...
+
+For Testing purpose: Postman /Advance Rest Client
+
+========
+
+```
+  <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+Gives: 
+* Embedded Tomcat Servlet Container / server
+* Jackson API for Java <--> JSON conversion: ContentNegotiation Handler
+alternate for Java <--> JSON are: Jettison, GSON, Moxy
+* DispatcherServlet as FrontController
+* HandlerMapping
+
+@RestController
+@RequestMapping("api/products")
+public class ProductController {
+    @GetMapping()
+    public List<Product> getProducts() {
+        return service.getProducts();
+    }
+
+    @PostMapping()
+    public Product addProduct(@RequestBody Product p) {
+        return service.addProduct(p);
+    }
+}
+
+
+@RestController
+@RequestMapping("api/orders")
+public class OrderController {
+}
+
+GET http://localhost:8080/api/products
+Accept: application/json
+
+POST http://localhost:8080/api/products
+Accept: application/json
+Content-type: application/json
+
+{
+    "name": "X",
+    "price": 444,
+    "qty": 100
+}
+
+
+```
+
+Resume @ 11:30
