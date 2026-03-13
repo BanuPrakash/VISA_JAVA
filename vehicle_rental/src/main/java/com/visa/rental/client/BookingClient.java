@@ -19,7 +19,7 @@ public class BookingClient implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 //           bookVehicle();
-        returnVehicle();
+//        returnVehicle();
     }
 
     private void returnVehicle() {

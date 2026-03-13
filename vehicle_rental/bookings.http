@@ -1,0 +1,19 @@
+```
+### @name="booking"
+POST http://localhost:8080/api/booking
+Accept: application/json
+Content-type: application/json
+
+{
+  "customer": {
+    "email": "anne@visa.com"
+  },
+  "vehicle": {
+    "registrationNumber": "UP-15-EB-4321"
+  },
+  "dateFrom": "2026-03-20T04:50:00"
+}
+
+### @name = "Some Task"
+GET http://localhost:8080/api/booking?date=05-02-2022
+Accept: text/plain

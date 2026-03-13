@@ -1840,6 +1840,34 @@ DTO --> Entity
 @ResponseBody <<Optional>>
 
 ```
+things to do:
 
+Vehicle Rental Application:
+1)
+```
+  <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+  </dependency>
 
+```
 
+2) Add BookingController
+2.a) Book a Vehicle
+
+```
+POST http://localhost:8080/api/booking
+Accept: application/json
+Content-type: application/json
+
+{
+    "customer": {
+        "email": "anne@visa.com"
+    },
+    "vehicle": {
+        "registrationNumber": "UP-15-EB-4321"
+    },
+    "dateFrom": "2026-3-20 4:50:00"
+}
+
+```

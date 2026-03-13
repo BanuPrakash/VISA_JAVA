@@ -35,6 +35,6 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "price": 54.22
+  "price": 58.22
 }
 

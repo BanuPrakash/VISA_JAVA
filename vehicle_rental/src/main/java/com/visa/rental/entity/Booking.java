@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; // AUTO_INCREMENT
+    private Integer id; // AUTO_INCREMENT
 
     @ManyToOne
     @JoinColumn(name = "customer_fk")
@@ -32,7 +32,7 @@ public class Booking {
     private Vehicle vehicle;
 
     @Column(name="date_from")
-    @FutureOrPresent(message = "Date ${validatedValue has to preset or future date")
+    @FutureOrPresent(message = "Date ${validatedValue} has to preset or future date")
     private LocalDateTime dateFrom;
 
 
