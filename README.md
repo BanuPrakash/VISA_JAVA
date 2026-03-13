@@ -1810,5 +1810,9 @@ Content-type: application/json
 
 
 ```
+ 
+@Controller: generally used for Server Side Rendering which returns a Page like HTML
 
-Resume @ 11:30
+@RestController: used for RESTful WS which returns JSON/XML
+
+
