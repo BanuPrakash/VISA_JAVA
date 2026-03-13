@@ -1,0 +1,22 @@
+### @name="GET ORDERS"
+GET http://localhost:8080/api/orders
+Accept: application/json
+
+### @name="GET RePOrt"
+GET http://localhost:8080/api/orders/report
+Accept: application/json
+
+### @name="Place Order"
+POST http://localhost:8080/api/orders
+Accept: text/plain
+Content-Type: application/json
+
+{
+  "customer": {
+    "email": "rekha@visa.com"
+  },
+  "items": [
+    {"product": {"id": 1}, "qty": 2},
+    {"product": {"id": 4}, "qty": 1}
+  ]
+}

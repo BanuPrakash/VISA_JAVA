@@ -19,8 +19,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "LG AC",
-  "price": 54000.00,
+  "name": "Panasonic TV",
+  "price": 154000.00,
   "qty": 100
 }
 

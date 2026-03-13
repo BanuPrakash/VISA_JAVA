@@ -54,6 +54,6 @@ public class ProductController {
                                  @RequestBody Product product) {
         System.out.println("Trying to update " + product);
         // update service
-        return  product;
+        return service.modifyProduct(id, product.getPrice());
     }
 }
