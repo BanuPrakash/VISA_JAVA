@@ -1815,4 +1815,12 @@ Content-type: application/json
 
 @RestController: used for RESTful WS which returns JSON/XML
 
+New Request Postman:
+GET / POST/ PUT / PATCH
+URL
+Headers has to be set
+Body: type the payload
+
+DTO is the solution: as carrier of data between client and server
+DTO --> Entity
 
