@@ -1927,3 +1927,16 @@ PointCut: selected joinpoint
 
 Advice: How to weave to a given pointcut: Before, After, Around, AfterThrowing, AfterReturning
 
+@ControllerAdvice is a special Adive [AOP] provided by Spring MVC Model. This handles exceptions thrown from @Controller and @RestController
+
+```
+ MethodArgumentNotValidException: 
+ 
+ addProduct(com.visa.ecomapp.entity.Product) with 2 errors: 
+ 
+ [Field error in object 'product' on field 'price': default message [Price 2.0 should be more than or equal to 10]] 
+ 
+ [Field error in object 'product' on field 'name': default message [Name is required!!]] 
+
+```
+

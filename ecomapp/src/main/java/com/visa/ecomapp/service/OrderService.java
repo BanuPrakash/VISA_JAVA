@@ -85,7 +85,7 @@ public class OrderService {
     }
 
     @Transactional
-    public Product modifyProduct(int id, double price) {
+    public Product modifyProduct(int id, double price) throws EntityNotFoundException {
         productRepo.updateProduct(id, price);
         return getProductById(id);
     }
@@ -102,12 +102,12 @@ public class OrderService {
         return  productRepo.save(product);
     }
 
-    public Product getProductById(int id) {
+    public Product getProductById(int id) throws EntityNotFoundException {
         Optional<Product> opt = productRepo.findById(id);
         if(opt.isPresent()) {
             return  opt.get();
         }
-        return null;
+        throw  new EntityNotFoundException("Product with ID: " + id + " doesn't exist!!!");
     }
 
     public List<Customer> getCustomers() {

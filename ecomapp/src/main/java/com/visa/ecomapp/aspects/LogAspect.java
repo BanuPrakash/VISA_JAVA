@@ -1,10 +1,7 @@
 package com.visa.ecomapp.aspects;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -32,5 +29,10 @@ public class LogAspect {
     @AfterReturning( value = "execution(* com.visa.ecomapp.service.*.get*(..))", returning = "obj")
     public void logAfter(JoinPoint jp, Object obj) {
         logger.info(jp.getSignature().getName() + " returns " + obj);
+    }
+
+    @AfterThrowing(value = "execution(* com.visa.ecomapp.service.*.*(..))", throwing = "ex")
+    public void logException(JoinPoint jp, Exception ex) {
+        logger.info("Exception in " + jp.getSignature().getName() + " Exception : " + ex.getMessage());
     }
 }

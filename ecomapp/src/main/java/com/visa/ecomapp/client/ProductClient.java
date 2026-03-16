@@ -24,10 +24,10 @@ public class ProductClient implements CommandLineRunner {
 //        changePrice();
     }
 
-    private void changePrice() {
-       Product p = service.modifyProduct(3, 4790);
-        System.out.println(p);
-    }
+//    private void changePrice() {
+//       Product p = service.modifyProduct(3, 4790);
+//        System.out.println(p);
+//    }
 
     private void printScalar() {
         List<ProductDTO> productDTOS = service.getScalar();

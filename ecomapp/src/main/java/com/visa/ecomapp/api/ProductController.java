@@ -1,7 +1,9 @@
 package com.visa.ecomapp.api;
 
 import com.visa.ecomapp.entity.Product;
+import com.visa.ecomapp.service.EntityNotFoundException;
 import com.visa.ecomapp.service.OrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -30,20 +32,20 @@ public class ProductController {
     // GET http://localhost:8080/api/products/3
     // Accept: application/json
     @GetMapping("/{pid}")
-    public  Product getProduct(@PathVariable("pid") int id) {
+    public  Product getProduct(@PathVariable("pid") int id) throws EntityNotFoundException  {
         return service.getProductById(id);
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED) // 201
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@RequestBody @Valid Product product) {
         return service.addProduct(product); // includes ID
     }
 
     //PATCH http://localhost:8080/api/products/4?price=53.25
     @PatchMapping("/{pid}")
     public Product updateProductPrice(@PathVariable("pid") int id,
-                                     @RequestParam("price") double price) {
+                                     @RequestParam("price") double price) throws EntityNotFoundException {
        return service.modifyProduct(id, price);
 //
 //        return "Product modified!!!";
@@ -51,7 +53,7 @@ public class ProductController {
 
     @PutMapping("/{pid}")
     public Product modifyProduct(@PathVariable("pid") int id,
-                                 @RequestBody Product product) {
+                                 @RequestBody Product product) throws EntityNotFoundException {
         System.out.println("Trying to update " + product);
         // update service
         return service.modifyProduct(id, product.getPrice());
