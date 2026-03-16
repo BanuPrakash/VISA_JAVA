@@ -1,5 +1,6 @@
 package com.visa.ecomapp.service;
 
+import com.visa.ecomapp.aspects.Tx;
 import com.visa.ecomapp.dto.ProductDTO;
 import com.visa.ecomapp.dto.ReportDTO;
 import com.visa.ecomapp.entity.Customer;
@@ -47,13 +48,16 @@ public class OrderService {
         }
      */
 
+    @Tx
     public List<ReportDTO> getReport() {
+
         return orderRepo.getReport();
     }
 
     public List<Order> getOrders() {
         return orderRepo.findAll();
     }
+
 
     public List<Order> orderWithItems() {
         return orderRepo.fetchWithItems();

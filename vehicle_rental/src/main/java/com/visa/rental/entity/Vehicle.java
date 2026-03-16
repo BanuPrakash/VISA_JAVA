@@ -20,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="vehicles")
 public class Vehicle {
+    // create regex for below two
     // KA-04-1234
     // UP-12-AE-9891
     @Id

@@ -1871,3 +1871,59 @@ Content-type: application/json
 }
 
 ```
+
+update products set qty = qty - ?, ver = ver + 1 where id = 4 and ver = 0
+
+@Lock(LockModeType.PESSIMISTIC_WRITE)
+Optional<Product> findByIdLocked(Long id); // Custom method name for clarity
+
+===============================================
+
+Aspect Oriented Programming
+
+- eliminates code tangling and code scattering
+
+```
+public class TransferServiceImpl implements TransferService {
+    public void transfer(Account a, Account b, Double amount) {
+        con.setAutoCommit(false);
+        try {
+        // Security concern starts here
+        if (!SecurityContext.hasPermission("TRANSFER_MONEY")) { //
+            throw new SecurityException("User not authorized");
+        }
+        logger.entering("TransferServiceImpl", "transfer"); // Logging concern
+
+        // Core business logic concern
+        a.withdraw(amount);
+
+        logger.debug("withdraw done!!!");
+
+        b.deposit(amount);
+
+        logger.debug("Transfer successful");
+        con.commit();
+        logger.exiting("TransferServiceImpl", "transfer"); // Logging concern
+        } catch(SQLException ex) {
+            con.rollback();
+        }
+    }
+}
+
+```
+
+Aspect: bit of a concern which generally leads to code tangling and code scattering, most of the time they don't contain any logic, but can be used along with your main logic.
+like :Logging, Transaction, security, profile
+
+joinpoint: place where aspect can be weaved. With Spring it can any method or exception
+
+```
+    if(balance < amt) {
+        throw new InfuccientBalanceException(...)
+    }
+
+```
+PointCut: selected joinpoint 
+
+Advice: How to weave to a given pointcut: Before, After, Around, AfterThrowing, AfterReturning
+

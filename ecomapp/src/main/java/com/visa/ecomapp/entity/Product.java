@@ -21,4 +21,8 @@ public class Product {
     private String name;
     private double price;
     private  int qty ;
+
+    @Version
+    @Column(name="ver")
+    private int version;
 }
