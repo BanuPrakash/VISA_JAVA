@@ -1940,3 +1940,31 @@ Advice: How to weave to a given pointcut: Before, After, Around, AfterThrowing, 
 
 ```
 
+spring-boot-starter-test:
+* JUnit /TestNG as Unit testing Framework
+* Hamcrest: assertion library 
+* Mockito
+used for Mocking dependency
+alterate: EasyMock / JMock, ...
+* DispatcherServletTest instead of DispatcherServlet
+* MockMvc: using this I can perform CRUD operations
+* jsonPath [ https://jsonpath.com/ ]
+```
+public class Computation {
+    public int add(int x, int y) {
+        return x + y;
+    }
+}
+
+
+public class ComputationTest {
+    // test spec
+    @Test
+    public void testAdd() {
+        Computation c = new Computation();
+        int result = c.add(4,5);
+        int expected = 9;
+        expect(result).toBe(expected);
+    }
+}
+```
