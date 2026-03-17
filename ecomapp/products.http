@@ -50,3 +50,13 @@ Content-Type: application/json
   "price": 58.22
 }
 
+### @name="ETag"
+
+GET http://localhost:8080/api/products/etag/3
+Accept: application/json
+
+
+### @name="Request Using ETag"
+GET http://localhost:8080/api/products/etag/3
+Accept: application/json
+If-None-Match: "-21627321"

@@ -1968,3 +1968,23 @@ public class ComputationTest {
     }
 }
 ```
+
+Cache:
+```
+ <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+```
+https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/support/CronExpression.html
+
+By DEfault In memory Cache is available --> ConcurrentMapCache
+
+@EnableCaching
+@Cacheable
+@CachePut
+@CacheEvict
+
+@EnableScheduling
+@Scheduled
