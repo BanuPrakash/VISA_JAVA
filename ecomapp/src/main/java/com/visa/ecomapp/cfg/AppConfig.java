@@ -15,8 +15,8 @@ public class AppConfig {
     @Autowired
     CacheManager cacheManager;
 
-    @Scheduled(fixedRate = 1000l)
-//    @Scheduled(cron = "*/30 * * * *")
+//    @Scheduled(fixedRate = 1000l)
+    @Scheduled(cron = "* */30 * * * *")
     public void doTask() {
         System.out.println("Called doTask...");
         cacheManager.getCacheNames().forEach(cache -> {

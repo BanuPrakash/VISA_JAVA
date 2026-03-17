@@ -1988,3 +1988,8 @@ By DEfault In memory Cache is available --> ConcurrentMapCache
 
 @EnableScheduling
 @Scheduled
+
+docker run --name my-redis -d -p 6379:6379 redis
+
+npx redis-commander
+
