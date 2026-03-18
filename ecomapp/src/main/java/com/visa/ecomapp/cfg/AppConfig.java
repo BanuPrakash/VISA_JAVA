@@ -12,10 +12,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableScheduling
 public class AppConfig {
 
-    @Autowired
+    @Autowired(required = false)
     CacheManager cacheManager;
 
-    @Scheduled(fixedRate = 1000l)
+//    @Scheduled(fixedRate = 1000l)
 //    @Scheduled(cron = "* */30 * * * *")
     public void doTask() {
         System.out.println("Called doTask...");

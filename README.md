@@ -2011,3 +2011,56 @@ By including above dependency :
 Using generated security password: 4fe16e46-79db-48d1-83db-cfd44648eb63
 
 DelegatingFilterProxy
+
+JWT: JSON Web Tokens are used for Stateless Sessions
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30
+
+HEADERS:
+```
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+```
+
+PAYLOAD:
+```
+{
+    subject: 'raj@visa.com',
+    iat: 3434234325,
+    exp: 5231342424,
+    iss: "https://secure.visa.com",
+    authorities: "ROLE_ADMIN", "ROLE_MANAGER",
+    ...
+}
+```
+SIGNATURE:
+```
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secretSaltValue)
+```
+MOVIES_ACTORS
+MID     AID
+1       41
+1       51
+2       41
+
+class Movie {
+
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name="MOVIES_ACTORS",
+         joinColumns = {
+            @JoinColumn(name="MID")},
+            inverseJoinColumns = {@JoinColumn(name="AID")}
+    )
+    private List<Actor> actors;
+
+}
+
+class Actor {
+
+}
