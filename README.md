@@ -1993,3 +1993,21 @@ docker run --name my-redis -d -p 6379:6379 redis
 
 npx redis-commander
 
+=======================
+
+Spring Security Module: Authentication and Authorization
+
+```
+  <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+```
+By including above dependency :
+1) all resources became protected.
+2) creates a login page
+3) logout : http://localhost:8080/logout
+4) One default user with generated password is created.
+Using generated security password: 4fe16e46-79db-48d1-83db-cfd44648eb63
+
+DelegatingFilterProxy
