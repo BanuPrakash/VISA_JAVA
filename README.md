@@ -2091,3 +2091,10 @@ Port: 27017 is exposed as 27017
 
 docker run -d --name some-mongo -p 27017:27017 mongo
 
+============
+
+Mono and Flux are built-in Publisher provided by webflux
+Mono generates 0 to 1 elements
+Flux generated 0 to N elements
+
+
