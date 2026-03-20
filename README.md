@@ -2067,17 +2067,22 @@ class Actor {
 }
 
 ```
-Autorization: Bearer <<token>>
 
-UsernamePasswordAuthenticationFilter
+Reactive Programming
+Reactive programming is a declarative paradigm focused on asynchronous data streams and the propagation of change, allowing applications to react to real-time events efficiently
 
-JwtSecurityFilter
+Spring provides spring-starter-WebFlux to be used instead of spring-starter-web to support Reactive Programming
 
+* This provides Netty instead of Tomcat as default HttpServer
+* Netty is Event Based and not Thread based
 
-eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbm5hQHZpc2EuY29tIiwiaWF0IjoxNzczOTgxMzE3LCJleHAiOjE3NzM5ODI3NTcsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwiaXNzIjoiaHR0cHM6Ly9zZXJ2ZXIudmlzYS5jb206NDQxIn0.5cvF61DKn_WZHO5g8vvK4Ao826dC8n_Snaea-_aALUQ
+JDBC is blocking
+R2DBC is non-blocking: Client makes a request, Eventloop hands over to Thread specific for database. Server need not keep the thread allocated for client active.
+Once Database Thread puts fetched records in Outbound channel handler. Event Loop can pick data from OutboundChannelHanlder and write to Client. Still entire data is sent back to client
+select * from products
 
+MongoDB - good for NIO.
+I get records. As soon as some one inserts record, I get that data also. No need to make new request.
 
-OncePerRequestFilter is a Spring-provided base class that guarantees a filter executes exactly once per HTTP request
-
-Resume @ 11:30 after Tea Break
+============
 
