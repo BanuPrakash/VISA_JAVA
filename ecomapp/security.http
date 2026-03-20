@@ -47,8 +47,25 @@ Accept: application/json
 }
 
 
+
+### @name ="User Login"
+
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "peter@visa.com",
+  "password": "secret"
+}
+
 ### @name="access Protected Resource"
 
 GET http://localhost:8080/api/products
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbm5hQHZpc2EuY29tIiwiaWF0IjoxNzczOTgxMzE3LCJleHAiOjE3NzM5ODI3NTcsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwiaXNzIjoiaHR0cHM6Ly9zZXJ2ZXIudmlzYS5jb206NDQxIn0.5cvF61DKn_WZHO5g8vvK4Ao826dC8n_Snaea-_aALUQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwZXRlckB2aXNhLmNvbSIsImlhdCI6MTc3Mzk4Nzk3OSwiZXhwIjoxNzczOTg5NDE5LCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoiaHR0cHM6Ly9zZXJ2ZXIudmlzYS5jb206NDQxIn0.iHSYp4B1QzwGX-CcYCufRaJJD8GLBm8SNvST02k7-Nw
+
+### @name="access Protected Admin Resource"
+GET http://localhost:8080/api/orders/report
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwZXRlckB2aXNhLmNvbSIsImlhdCI6MTc3Mzk4Nzk3OSwiZXhwIjoxNzczOTg5NDE5LCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoiaHR0cHM6Ly9zZXJ2ZXIudmlzYS5jb206NDQxIn0.iHSYp4B1QzwGX-CcYCufRaJJD8GLBm8SNvST02k7-Nw

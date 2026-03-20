@@ -1,5 +1,6 @@
 package com.visa.ecomapp.security.cfg;
 
+import com.visa.ecomapp.security.api.JwtAuthenticationFilter;
 import com.visa.ecomapp.security.service.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -25,12 +26,16 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final UserDetailsServiceImpl userDetailsService;
-
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
     @Bean
     public SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable) // not required for Stateless
-                .authorizeHttpRequests(request -> request.anyRequest().permitAll())
-                .authenticationProvider(authenticationProvider());
+                .authorizeHttpRequests(request -> request.requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/api/orders/**").hasRole("ADMIN")
+                                .requestMatchers("/api/products/**").hasAnyRole("ADMIN", "USER"))
+                .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//             .authenticationProvider(authenticationProvider())
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
         // no form based login
 
