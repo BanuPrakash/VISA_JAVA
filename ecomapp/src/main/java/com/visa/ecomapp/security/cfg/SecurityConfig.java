@@ -23,6 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final UserDetailsServiceImpl userDetailsService;
@@ -31,8 +32,9 @@ public class SecurityConfig {
     public SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable) // not required for Stateless
                 .authorizeHttpRequests(request -> request.requestMatchers("/auth/**").permitAll()
-                                .requestMatchers("/api/orders/**").hasRole("ADMIN")
-                                .requestMatchers("/api/products/**").hasAnyRole("ADMIN", "USER"))
+                        .anyRequest().permitAll())
+//                                .requestMatchers("/api/orders/**").hasRole("ADMIN")
+//                                .requestMatchers("/api/products/**").hasAnyRole("ADMIN", "USER"))
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 //             .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

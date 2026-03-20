@@ -5,6 +5,8 @@ import com.visa.ecomapp.entity.Order;
 import com.visa.ecomapp.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +32,10 @@ public class OrderController {
     }
 
     // GET http://localhost:8080/api/orders/report
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/report")
-    public List<ReportDTO> getReport() {
+    public List<ReportDTO> getReport(SecurityContext context) {
+        System.out.println("Hello " + context.getAuthentication().getPrincipal());
         return service.getReport();
     }
 }

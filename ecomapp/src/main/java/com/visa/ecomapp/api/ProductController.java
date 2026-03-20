@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -70,6 +71,7 @@ public class ProductController {
     }
 
     //PATCH http://localhost:8080/api/products/4?price=53.25
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PatchMapping("/{pid}")
     @CachePut(value="products", key="#id") // update the cache
     public Product updateProductPrice(@PathVariable("pid") int id,
