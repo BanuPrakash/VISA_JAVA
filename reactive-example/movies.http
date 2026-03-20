@@ -1,0 +1,10 @@
+### @name="Add Movie"
+POST http://localhost:8080/movie
+Accept: text/event-stream
+Content-Type: application/json
+
+{
+  "title": "Some Title",
+  "year": 2026,
+  "genre": "Action"
+}

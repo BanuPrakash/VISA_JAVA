@@ -2098,3 +2098,17 @@ Mono generates 0 to 1 elements
 Flux generated 0 to N elements
 
 
+% docker exec -it some-mongo bash
+# db.createCollection("movie", {capped:true, size:5242880, max:50});
+
+RDBMS       MongoDB
+Table       collection
+Column      Field
+
+A MongoDB capped collection is a fixed-size collection that automatically overwrites its oldest documents to make room for new ones once it reaches a specified size limit.
+Capped Collections supports Tailable Cursor.
+
+MongoDB tailable cursors are specialized cursors used on capped collections to stream new documents as they are inserted.
+
+
+

@@ -1,5 +1,6 @@
 package com.visa.reactiveexample;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ public class SampleController {
 
 
     // Server Side Events
-    @GetMapping(value = "/stream", produces = "application/stream+json")
+    @GetMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Integer> returnFluxStream() {
         return Flux.just(10, 20, 30, 40, 50, 60)
                 .delayElements(Duration.ofSeconds(1)).log();
