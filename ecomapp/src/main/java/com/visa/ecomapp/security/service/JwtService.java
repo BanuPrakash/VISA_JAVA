@@ -12,10 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -65,14 +62,21 @@ public class JwtService {
     }
 
     public  String extractEmail(String token) {
-        return  extractClaim(token, Claims:: getSubject);
+//        List<String> list = List.of("A", "B", "C");
+//        list.forEach(data -> System.out.println(data));
+//        list.forEach(System.out::println); // Method REF
+
+        return  extractClaim(token, (claims -> claims.getSubject()));
     }
+
 
     private Date extractExpiration(String token) {
         return  extractClaim(token, Claims:: getExpiration);
     }
 
     private boolean isTokenExpired(String token) {
+        // token is created on 20-MAR, expires on 21-MAR
+        // USer is using it on 22-MAR - fails new Date() ---> 22-MAR
         return extractExpiration(token).before(new Date());
     }
 
