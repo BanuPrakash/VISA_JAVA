@@ -28,7 +28,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf(AbstractHttpConfigurer::disable)
+        httpSecurity.csrf(AbstractHttpConfigurer::disable) // not required for Stateless
                 .authorizeHttpRequests(request -> request.anyRequest().permitAll())
                 .authenticationProvider(authenticationProvider());
         return httpSecurity.build();

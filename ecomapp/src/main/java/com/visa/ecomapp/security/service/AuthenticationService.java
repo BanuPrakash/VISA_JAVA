@@ -24,9 +24,8 @@ public class AuthenticationService {
     private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-//    public HashMap<String, List<String>> getData() {
-//        return  null;
-//    }
+    private final JwtService jwtService;
+
     // register
     public  String signup(SignUpRequest request) {
 //        var data = getData();
@@ -46,7 +45,7 @@ public class AuthenticationService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         var user = userDao.findByEmail(request.getEmail()).orElseThrow(() -> new IllegalArgumentException("Invalid email/password"));
         // should generate Token and send it back
-        return "token<<>>";
+        return jwtService.generateToken(user);
     }
 
 }
