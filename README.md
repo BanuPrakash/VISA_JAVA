@@ -2085,4 +2085,9 @@ MongoDB - good for NIO.
 I get records. As soon as some one inserts record, I get that data also. No need to make new request.
 
 ============
+some-mongo is the name of the container
+mongo is the image present of docker hub
+Port: 27017 is exposed as 27017
+
+docker run -d --name some-mongo -p 27017:27017 mongo
 
