@@ -36,7 +36,7 @@ public class SecurityConfig {
 //                                .requestMatchers("/api/orders/**").hasRole("ADMIN")
 //                                .requestMatchers("/api/products/**").hasAnyRole("ADMIN", "USER"))
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//             .authenticationProvider(authenticationProvider())
+             .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
         // no form based login
